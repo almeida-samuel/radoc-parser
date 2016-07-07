@@ -1,15 +1,15 @@
 package interfaces;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface RadocParser {
-	List<String> obtenhaAtividadesDeEnsino();
-	List<String> obtenhaAtividadesDeOrientacao();
-	List<String> obtenhaAtividadesEmProjetos();
-	List<String> obtenhaAtividadesDeExtensao();
-	List<String> obtenhaAtividadesDeQualificacao();
-	List<String> obtenhaAtividadesAcademicasEspeciais();
-	List<String> obtenhaAtividadesAdministrativas();
-	List<String> obtenhaProdutos();
-	List<String> obtenhaAfastamentos();
+	ArrayList<String> obtenhaAtividadesDeEnsino();
+	ArrayList<String> obtenhaAtividadesDeOrientacao();
+	ArrayList<String> obtenhaAtividadesEmProjetos();
+	ArrayList<String> obtenhaAtividadesDeExtensao();
+	ArrayList<String> obtenhaAtividadesDeQualificacao();
+	ArrayList<String> obtenhaAtividadesAcademicasEspeciais();
+	ArrayList<String> obtenhaAtividadesAdministrativas();
+	ArrayList<String> obtenhaProdutos();
+	ArrayList<String> obtenhaAfastamentos();
 }

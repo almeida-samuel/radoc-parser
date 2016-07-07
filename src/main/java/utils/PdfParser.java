@@ -24,39 +24,39 @@ public class PdfParser implements RadocParser {
 		this.conteudoArquivo = "";
 	}
 
-	public List<String> obtenhaAtividadesDeEnsino() {
+	public ArrayList<String> obtenhaAtividadesDeEnsino() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAtividadesDeOrientacao() {
+	public ArrayList<String> obtenhaAtividadesDeOrientacao() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAtividadesEmProjetos() {
+	public ArrayList<String> obtenhaAtividadesEmProjetos() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAtividadesDeExtensao() {
+	public ArrayList<String> obtenhaAtividadesDeExtensao() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAtividadesDeQualificacao() {
+	public ArrayList<String> obtenhaAtividadesDeQualificacao() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAtividadesAcademicasEspeciais() {
+	public ArrayList<String> obtenhaAtividadesAcademicasEspeciais() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAtividadesAdministrativas() {
+	public ArrayList<String> obtenhaAtividadesAdministrativas() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaProdutos() {
+	public ArrayList<String> obtenhaProdutos() {
 		return new ArrayList<String>();
 	}
 
-	public List<String> obtenhaAfastamentos() {
+	public ArrayList<String> obtenhaAfastamentos() {
 		return new ArrayList<String>();
 	}
 
