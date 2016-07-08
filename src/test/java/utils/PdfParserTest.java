@@ -47,6 +47,8 @@ public class PdfParserTest {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesEmProjetos = radocParser.obtenhaAtividadesEmProjetos();
+
+		assertEquals(3, atividadesEmProjetos.size());
 	}
 
 	@Test

@@ -7,7 +7,10 @@ import org.apache.pdfbox.util.PDFTextStripper;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,11 +57,9 @@ public class PdfParser implements RadocParser {
 
 	public ArrayList<String> obtenhaAtividadesEmProjetos() {
 		ArrayList<String> atividadesEmProjetos = new ArrayList<String>();
-
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_EM_PROJETOS, conteudoDoArquivo);
 
-		// CONFIGURA SUBSTITUIÇÕES
 		Map<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades em projetos", "");
 		substituicoes.put("Atividades de extensão", "");
@@ -69,37 +70,22 @@ public class PdfParser implements RadocParser {
 			conteudoDoArquivo = matcher.group();
 			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
 
-		}
+			String regexAtividadesIndividuais = "Título do Projeto:.*?Data Término:\\s*[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}";
+			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
+			int contadorAtividadesIndividuais = 0;
 
+			while(matcherAtividadesIndividuais.find()) {
+				Matcher matcherAtividade;
+				String regexAtividadeUnica = "Título do Projeto:REGEX_TUDO(REGEX_TUDO)REGEX_TUDOTabela:REGEX_TUDO(REGEX_TUDO)Unidade Responsável:REGEX_TUDOCHA:REGEX_TUDO([\\d]+)REGEX_TUDOData Início:REGEX_TUDO(\\d{2}\\/\\d{2}\\/\\d{4})[\\s\\d\\p{L}\\/\\-\\.\\_\\:]+Data Término:REGEX_TUDO(\\d{2}\\/\\d{2}\\/\\d{4})";
+				regexAtividadeUnica = regexAtividadeUnica.replace("REGEX_TUDO", REGEX_TUDO);
+				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
 
-		// NESTE PONTO O CONTEÚDO JÁ ESTÁ SEM QUEBRA DE LINHAS E SEM RECUOS. SOMENTE A LISTA DE ATIVIDADES
+				while(matcherAtividade.find()) {
+					atividadesEmProjetos.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
+				}
 
-		/*
-		* REGEX ATIVIDADES INDIVIDUAIS
-		* */
-		String regexAtividadesIndividuais = "Título do Projeto:.*?Data Término:\\s*[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}";
-		Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-		int contadorAtividadesIndividuais = 0;
-
-		// Itera sobre a lista de atividades
-		while(matcherAtividadesIndividuais.find()) {
-			Matcher matcherAtividade;
-
-			String regexAtividadeUnica = "Título do Projeto:\\s*([\\s\\d\\p{L}]+)[\\s\\d\\p{L}:\\/-]+Tabela:\\s*([\\s\\d\\p{L}\\/\\-\\.\\_\\:]+)Unidade Responsável:[\\s\\d\\p{L}\\/\\-\\.\\_\\:]+CHA:\\s*([\\d]+)\\s*Data Início:\\s*(\\d{2}\\/\\d{2}\\/\\d{4})[\\s\\d\\p{L}\\/\\-\\.\\_\\:]+Data Término:\\s*(\\d{2}\\/\\d{2}\\/\\d{4})";
-			matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-
-			while(matcherAtividade.find()) {
-				// Param: MATCHER
-				atividadesEmProjetos.add(
-						(contadorAtividadesIndividuais+1) + ", "
-						+ matcherAtividade.group(1) + " " + matcherAtividade.group(2) + ", "
-						+ matcherAtividade.group(3) + ", "
-						+ matcherAtividade.group(4).replaceAll("/", "") + ", "
-						+ matcherAtividade.group(5).replaceAll("/", "")
-				);
+				contadorAtividadesIndividuais++;
 			}
-
-			contadorAtividadesIndividuais++;
 		}
 
 		return atividadesEmProjetos;
@@ -202,9 +188,9 @@ public class PdfParser implements RadocParser {
 	private String obtenhaLinhaDeRegistroPadronizado(int sequencial, Matcher matcher) {
 		String linhaDeRegistroPadrao = "";
 
-		linhaDeRegistroPadrao += sequencial + ", ";
+		linhaDeRegistroPadrao += (sequencial+1) + ", ";
 		linhaDeRegistroPadrao += matcher.group(1) + " " + matcher.group(2) + ", ";
-		linhaDeRegistroPadrao += trataCargaHoraria(matcher);
+		linhaDeRegistroPadrao += trataCargaHoraria(matcher) + ", ";
 		linhaDeRegistroPadrao += trataDatas(matcher);
 
 		return linhaDeRegistroPadrao;
@@ -216,8 +202,28 @@ public class PdfParser implements RadocParser {
 	 * @return A carga horária anual da atividade.
      */
 	private String trataCargaHoraria(Matcher matcher) {
+		if (matcher.group(3) != "") {
+			return matcher.group(3);
+		}
 
-		return null;
+		String dtInicio = matcher.group(4).trim();
+		String dtFim = matcher.group(5).trim();
+
+		if (dtInicio == "") dtInicio = dtFim;
+		if (dtFim == "") dtFim = dtInicio;
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date dtInicioDate = simpleDateFormat.parse(dtInicio);
+			Date dtFimDate = simpleDateFormat.parse(dtFim);
+
+			long diferenca = TimeUnit.DAYS.convert(dtFimDate.getTime() - dtInicioDate.getTime(), TimeUnit.MILLISECONDS);
+			return String.valueOf(diferenca * 8);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		return "";
 	}
 
 	/**
@@ -227,7 +233,13 @@ public class PdfParser implements RadocParser {
      */
 	private String trataDatas(Matcher matcher) {
 
-		return null;
+		String dtInicio = matcher.group(4).replaceAll("/", "").trim();
+		String dtFim = matcher.group(5).replaceAll("/", "").trim();
+
+		if (dtInicio == "") dtInicio = dtFim;
+		if (dtFim == "") dtFim = dtInicio;
+
+		return (dtInicio + ", " + dtFim);
 	}
 
 }
