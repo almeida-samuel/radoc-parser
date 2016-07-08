@@ -16,7 +16,12 @@ public class PdfParser implements RadocParser {
 
 	private final String ENCONDING = "UTF-8";
 	private final String REGEX_ATIVIDADES_DE_ENSINO = "Atividades de ensino([\\p{L}\\s-\\d]+)Atividades de orientação";
-	private final String REGEX_ATIVIDADES_DE_ORIENTACAO = "REGEX_AQUI";
+	private final String REGEX_ATIVIDADES_DE_ORIENTACAO = "Atividades de orientação([\\p{L}\\s-\\d\\W]+)Atividades em projetos";
+	private final String REGEX_ATIVIDADES_EM_PROJETOS = "Atividades em projetos([\\p{L}\\s-\\d\\W]+)Atividades de extensão";
+	private final String REGEX_ATIVIDADES_DE_EXTENSAO = "Atividades de extensão([\\p{L}\\s-\\d\\W]+)Atividades de qualificação";
+	private final String REGEX_ATIVIDADES_DE_QUALIFICACAO = "Atividades de qualificação([\\p{L}\\s-\\d\\W]+)Atividades acadêmicas especiais";
+	private final String REGEX_ATIVIDADES_ADMINISTRATIVAS = "Atividades administrativas([\\p{L}\\s-\\d\\W]+)^Produtos\\n";
+	private final String REGEX_PRODUTOS = "^Produtos\\n([\\p{L}\\s-\\d\\W]+)";
 
 	private File arquivoFonte;
 	private String conteudoArquivo;
@@ -27,17 +32,20 @@ public class PdfParser implements RadocParser {
 	}
 
 	public ArrayList<String> obtenhaAtividadesDeEnsino() {
-		Pattern regex = Pattern.compile(REGEX_ATIVIDADES_DE_ENSINO);
+		ArrayList<String> atividadesDeEnsino = new ArrayList<String>();
 		String conteudo = obtenhaConteudoArquivo();
-		Matcher matcher = regex.matcher(conteudo);
-		matcher.find();
+		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ENSINO, conteudo);
 
-		while(matcher.find()){
+		if(matcher.find()){
 			conteudo = matcher.group();
+			conteudo = conteudo.replaceAll("Atividades de ensino","");
+			conteudo = conteudo.replaceAll("Atividades de orientação","");
+			conteudo = conteudo.replaceAll("\\n+"," ");
+			String[] atividades = conteudo.replaceAll("\\r+","").split("\\d+\\s(SIM|NÃO)");
+			atividadesDeEnsino = paraArrayList(atividades);
 		}
 
-
-		return new ArrayList<String>();
+		return atividadesDeEnsino;
 	}
 
 	public ArrayList<String> obtenhaAtividadesDeOrientacao() {
@@ -104,5 +112,21 @@ public class PdfParser implements RadocParser {
 		conteudoArquivo = conteudoArquivo.replaceAll("Curso Disciplina CHA Ano Sem Turma Sub Nº alunos Nº sub CHT CHP CHAC Conjug","");
 		conteudoArquivo = conteudoArquivo.replaceAll("RGCG - Regime de Graduação Semestral","");
 		conteudoArquivo = conteudoArquivo.replaceAll("LEGENDA: CHA - Carga horária da atividade \\| Sem - Semestre \\| Sub - Subturma \\| CHT, CHP e CHAC - Carga horária teórica, prática e acessória \\| Conjug - Disciplina conjugada","");
+	}
+
+	private ArrayList<String> paraArrayList(String[] entrada){
+		ArrayList array = new ArrayList<String>();
+		for(int i = 0; i < entrada.length; i++){
+			entrada[i] = entrada[i].trim();
+			if(entrada[i] != ""){
+				array.add(entrada[i].trim());
+			}
+		}
+		return array;
+	}
+
+	private Matcher obtenhaMatcher (String regexConteudo, String conteudo){
+		Pattern regex = Pattern.compile(regexConteudo);
+		return regex.matcher(conteudo);
 	}
 }
