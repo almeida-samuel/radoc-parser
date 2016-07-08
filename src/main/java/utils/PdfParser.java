@@ -34,6 +34,9 @@ public class PdfParser implements RadocParser {
 		this.conteudoArquivo = "";
 	}
 
+	/**
+	 * {@inheritDoc}
+     */
 	public ArrayList<String> obtenhaAtividadesDeEnsino() {
 		ArrayList<String> atividadesDeEnsino = new ArrayList<String>();
 		String conteudo = obtenhaConteudoArquivo();
@@ -45,16 +48,22 @@ public class PdfParser implements RadocParser {
 			conteudo = conteudo.replaceAll("Atividades de orientação","");
 			conteudo = conteudo.replaceAll("\\n+"," ");
 			String[] atividades = conteudo.replaceAll("\\r+","").split("\\d+\\s(SIM|NÃO)");
-			atividadesDeEnsino = paraArrayList(atividades);
+			//atividadesDeEnsino = paraArrayList(atividades);
 		}
 
 		return atividadesDeEnsino;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAtividadesDeOrientacao() {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAtividadesEmProjetos() {
 		ArrayList<String> atividadesEmProjetos = new ArrayList<String>();
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
@@ -91,37 +100,63 @@ public class PdfParser implements RadocParser {
 		return atividadesEmProjetos;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAtividadesDeExtensao() {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAtividadesDeQualificacao() {return new ArrayList<String>();}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAtividadesAcademicasEspeciais() {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAtividadesAdministrativas() {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaProdutos() {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<String> obtenhaAfastamentos() {
 		return new ArrayList<String>();
 	}
 
+	/**
+	 * Recupera o conteúdo do arquivo e remove as linhas não utilizadas.
+	 * @return O documento parseado.
+     */
 	public String obtenhaConteudoArquivo(){
 		if("".equals(conteudoArquivo)){
 			conteudoArquivo = extraiaTexto();
-			removaLinhasInuteis();
+			removaLinhasCabecalhoERodape();
 		}
 
 		return conteudoArquivo;
 	}
 
+	/**
+	 * Recupera as informações textuais de um Radoc utilizndo a ferramenta PDFBox.
+	 * @return O conteudo textual do Radoc.
+     */
 	private String extraiaTexto() {
 		String textoPDF = "";
 
@@ -140,7 +175,10 @@ public class PdfParser implements RadocParser {
 		return textoPDF;
 	}
 
-	private void removaLinhasInuteis(){
+	/**
+	 * Remove as linhas de cabeçalho e rodapé de um Radoc em sua representação textual.
+	 */
+	private void removaLinhasCabecalhoERodape(){
 		conteudoArquivo = conteudoArquivo.replaceAll("Data: \\d+/\\d+/\\d+ \\d+:\\d+:\\d+\\s+[\\w\\s]+Página\\s+\\d+\\s+/\\s+\\d+","");
 		conteudoArquivo = conteudoArquivo.replaceAll("EXTRATO DAS ATIVIDADES\\s+-\\s+ANO BASE:\\s+\\d+","");
 		conteudoArquivo = conteudoArquivo.replaceAll("UNIVERSIDADE FEDERAL DE GOIÁS\\r\\nSISTEMA DE CADASTRO DE ATIVIDADES DOCENTES","");
@@ -149,17 +187,13 @@ public class PdfParser implements RadocParser {
 		conteudoArquivo = conteudoArquivo.replaceAll("LEGENDA: CHA - Carga horária da atividade \\| Sem - Semestre \\| Sub - Subturma \\| CHT, CHP e CHAC - Carga horária teórica, prática e acessória \\| Conjug - Disciplina conjugada","");
 	}
 
-	private ArrayList<String> paraArrayList(String[] entrada){
-		ArrayList array = new ArrayList<String>();
-		for(int i = 0; i < entrada.length; i++){
-			entrada[i] = entrada[i].trim();
-			if(entrada[i] != ""){
-				array.add(entrada[i].trim());
-			}
-		}
-		return array;
-	}
 
+	/**
+	 * Retorna o Matcher equivalente para um data regex e um dado conteudo.
+	 * @param regexConteudo Regex utilizada na configuração do matcher.
+	 * @param conteudo Conteudo no qual será feito a análise da regex.
+     * @return O matcher configurado para a regex e o conteúdo em análise.
+     */
 	private Matcher obtenhaMatcher (String regexConteudo, String conteudo){
 		Pattern regex = Pattern.compile(regexConteudo);
 		return regex.matcher(conteudo);
