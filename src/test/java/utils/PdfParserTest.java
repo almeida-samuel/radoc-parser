@@ -1,9 +1,11 @@
 package utils;
 
+import interfaces.RadocParser;
 import org.junit.*;
 import sun.misc.Resource;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +13,6 @@ public class PdfParserTest {
 
 	@Before
 	public void setUp() throws Exception {
-
 	}
 
 	@After
@@ -29,9 +30,10 @@ public class PdfParserTest {
 	}
 
 	@Test
-	@Ignore
 	public void obtenhaAtividadesDeEnsino() throws Exception {
-
+		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeEnsino = radocParser.obtenhaAtividadesDeEnsino();
 	}
 
 	@Test
@@ -59,6 +61,7 @@ public class PdfParserTest {
 	}
 
 	@Test
+
 	@Ignore
 	public void obtenhaAtividadesAcademicasEspeciais() throws Exception {
 
