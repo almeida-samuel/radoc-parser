@@ -1,4 +1,4 @@
-import utils.PdfParser;
+import parsers.PdfParser;
 
 import java.io.File;
 

@@ -2,7 +2,7 @@ package utils;
 
 import interfaces.RadocParser;
 import org.junit.*;
-import sun.misc.Resource;
+import parsers.PdfParser;
 
 import java.io.File;
 import java.util.ArrayList;
