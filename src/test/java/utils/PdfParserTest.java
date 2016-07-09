@@ -87,9 +87,12 @@ public class PdfParserTest {
 	}
 
 	@Test
-	@Ignore
 	public void obtenhaProdutos() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> produtos = radocParser.obtenhaProdutos();
 
+		assertEquals(10, produtos.size());
 	}
 
 	@Test

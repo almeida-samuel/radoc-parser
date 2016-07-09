@@ -24,7 +24,7 @@ public class PdfParser implements RadocParser {
 	private final String REGEX_ATIVIDADES_DE_EXTENSAO = "Atividades de extensão([\\p{L}\\s-\\d\\W]+)Atividades de qualificação";
 	private final String REGEX_ATIVIDADES_DE_QUALIFICACAO = "Atividades de qualificação[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades acadêmicas especiais";
 	private final String REGEX_ATIVIDADES_ADMINISTRATIVAS = "Atividades administrativas[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Produtos";
-	private final String REGEX_PRODUTOS = "^Produtos\\n([\\p{L}\\s-\\d\\W]+)";
+	private final String REGEX_PRODUTOS = "Produtos[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
 
 	private File arquivoFonte;
 	private String conteudoArquivo;
@@ -227,7 +227,39 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaProdutos() {
-		return new ArrayList<String>();
+		ArrayList<String> produtos = new ArrayList<String>();
+		String conteudoDoArquivo = obtenhaConteudoArquivo();
+		Matcher matcher = obtenhaMatcher(REGEX_PRODUTOS, conteudoDoArquivo);
+
+		Map<String, String> substituicoes = new HashMap<String, String>();
+		substituicoes.put("Produtos", "");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+
+		if(matcher.find()) {
+			conteudoDoArquivo = matcher.group();
+			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+
+			System.out.println(conteudoDoArquivo);
+
+			String regexProdutosIndividuais = "Descrição do produto:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Editora:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bDescrição\\b|$)";
+			Matcher matcherProdutosIndividuais = obtenhaMatcher(regexProdutosIndividuais, conteudoDoArquivo);
+			int contadorProdutosIndividuais = 0;
+
+			while(matcherProdutosIndividuais.find()) {
+				Matcher matcherAtividade;
+				String regexProdutoUnico = "Descrição do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Título do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Autoria[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?()Data:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})()";
+				matcherAtividade = obtenhaMatcher(regexProdutoUnico, matcherProdutosIndividuais.group());
+
+				while(matcherAtividade.find()) {
+					produtos.add(obtenhaLinhaDeRegistroPadronizado(contadorProdutosIndividuais, matcherAtividade));
+				}
+
+				contadorProdutosIndividuais++;
+			}
+		}
+
+		return produtos;
 	}
 
 	/**
@@ -333,15 +365,15 @@ public class PdfParser implements RadocParser {
 	 * @return A carga horária anual da atividade.
      */
 	private String trataCargaHoraria(Matcher matcher) {
-		if (matcher.group(3) != "") {
+		if (!"".equals(matcher.group(3))) {
 			return matcher.group(3);
 		}
 
 		String dtInicio = matcher.group(4).trim();
 		String dtFim = matcher.group(5).trim();
 
-		if (dtInicio == "") dtInicio = dtFim;
-		if (dtFim == "") dtFim = dtInicio;
+		if ("".equals(dtInicio)) dtInicio = dtFim;
+		if ("".equals(dtFim)) dtFim = dtInicio;
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		try {
@@ -349,6 +381,7 @@ public class PdfParser implements RadocParser {
 			Date dtFimDate = simpleDateFormat.parse(dtFim);
 
 			long diferenca = TimeUnit.DAYS.convert(dtFimDate.getTime() - dtInicioDate.getTime(), TimeUnit.MILLISECONDS);
+			if(diferenca == 0) return String.valueOf(8);
 			return String.valueOf(diferenca * 8);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -367,8 +400,8 @@ public class PdfParser implements RadocParser {
 		String dtInicio = matcher.group(4).replaceAll("/", "").trim();
 		String dtFim = matcher.group(5).replaceAll("/", "").trim();
 
-		if (dtInicio == "") dtInicio = dtFim;
-		if (dtFim == "") dtFim = dtInicio;
+		if ("".equals(dtInicio)) dtInicio = dtFim;
+		if ("".equals(dtFim)) dtFim = dtInicio;
 
 		return (dtInicio + ", " + dtFim);
 	}
