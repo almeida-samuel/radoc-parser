@@ -39,7 +39,11 @@ public class PdfParserTest {
 	@Test
 	@Ignore
 	public void obtenhaAtividadesDeOrientacao() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeOrientacao = radocParser.obtenhaAtividadesDeOrientacao();
 
+		assertEquals(3, atividadesDeOrientacao.size());
 	}
 
 	@Test

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class PdfParser implements RadocParser {
 
 	private final String ENCONDING = "UTF-8";
-	private final String REGEX_TUDO = "[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
+	private final String REGEX_TUDO = "[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?";
 	private final String REGEX_ATIVIDADES_DE_ENSINO = "Atividades de ensino([\\p{L}\\s-\\d]+)Atividades de orientação";
 	private final String REGEX_ATIVIDADES_DE_ORIENTACAO = "Atividades de orientação([\\p{L}\\s-\\d\\W]+)Atividades em projetos";
 	private final String REGEX_ATIVIDADES_EM_PROJETOS = "Atividades em projetos([\\p{L}\\s-\\d\\W]+)Atividades de extensão";
@@ -58,7 +58,39 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesDeOrientacao() {
-		return new ArrayList<String>();
+		ArrayList<String> atividadesDeOrientacao = new ArrayList<String>();
+		String conteudoDoArquivo = obtenhaConteudoArquivo();
+		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ORIENTACAO, conteudoDoArquivo);
+
+		Map<String, String> substituicoes = new HashMap<String, String>();
+		substituicoes.put("Atividades de orientação", "");
+		substituicoes.put("Atividades em projetos", "");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+
+		if(matcher.find()) {
+			conteudoDoArquivo = matcher.group();
+			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+
+			String regexAtividadesIndividuais = "Título do trabalho:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d+\\/\\d+\\/\\d+";
+			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
+			int contadorAtividadesIndividuais = 0;
+
+			while(matcherAtividadesIndividuais.find()) {
+				Matcher matcherAtividade;
+				String regexAtividadeUnica = "Título do trabalho:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Tabela:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Orientando:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d+\\/\\d+\\/\\d+)[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+(\\d+\\/\\d+\\/\\d+)";
+				regexAtividadeUnica = regexAtividadeUnica.replace("REGEX_TUDO", REGEX_TUDO);
+				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
+
+				while(matcherAtividade.find()) {
+					atividadesDeOrientacao.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
+				}
+
+				contadorAtividadesIndividuais++;
+			}
+		}
+
+		return atividadesDeOrientacao;
 	}
 
 	/**
