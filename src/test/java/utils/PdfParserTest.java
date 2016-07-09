@@ -62,9 +62,12 @@ public class PdfParserTest {
 	}
 
 	@Test
-	@Ignore
 	public void obtenhaAtividadesDeQualificacao() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeQualificacao = radocParser.obtenhaAtividadesDeQualificacao();
 
+		assertEquals(3, atividadesDeQualificacao.size());
 	}
 
 	@Test
