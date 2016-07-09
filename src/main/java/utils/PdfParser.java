@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class PdfParser implements RadocParser {
 
 	private final String ENCONDING = "UTF-8";
-	private final String REGEX_TUDO = "[\\s\\d\\p{L}\\/\\-\\.\\_\\:]+";
+	private final String REGEX_TUDO = "[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
 	private final String REGEX_ATIVIDADES_DE_ENSINO = "Atividades de ensino([\\p{L}\\s-\\d]+)Atividades de orientação";
 	private final String REGEX_ATIVIDADES_DE_ORIENTACAO = "Atividades de orientação([\\p{L}\\s-\\d\\W]+)Atividades em projetos";
 	private final String REGEX_ATIVIDADES_EM_PROJETOS = "Atividades em projetos([\\p{L}\\s-\\d\\W]+)Atividades de extensão";
@@ -104,7 +104,7 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesDeExtensao() {
-		return new ArrayList<String>();
+		return null;
 	}
 
 	/**
