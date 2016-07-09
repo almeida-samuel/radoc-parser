@@ -181,4 +181,13 @@ public class PdfParserTest {
 
 		assertEquals(13, produtos.size());
 	}
+
+	@Test
+	public void obtenhaAfastamentosRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> afastamentos = radocParser.obtenhaAfastamentos();
+
+		assertEquals(1, afastamentos.size());
+	}
 }

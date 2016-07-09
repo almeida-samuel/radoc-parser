@@ -26,6 +26,7 @@ public class PdfParser implements RadocParser {
 	private final String REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS = "Atividades acadêmicas especiais[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades administrativas";
 	private final String REGEX_ATIVIDADES_ADMINISTRATIVAS = "Atividades administrativas[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Produtos";
 	private final String REGEX_PRODUTOS = "Produtos[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
+	private final String REGEX_AFASTAMENTOS = "Afastamento([\\p{L}\\s-\\d]+)Atividades de ensino";
 
 	private File arquivoFonte;
 	private String conteudoArquivo;
@@ -248,7 +249,21 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAfastamentos() {
-		return new ArrayList<String>();
+		ArrayList<String> afastamentos;
+		String conteudoDoArquivo = obtenhaConteudoArquivo();
+		Matcher matcher = obtenhaMatcher(REGEX_AFASTAMENTOS, conteudoDoArquivo);
+
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
+		substituicoes.put("Afastasmentos", "");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+
+		String regexAfastamentoIndividual = "";
+		String regexAfastamentoUnico = "";
+
+		afastamentos = obtenhaRegistros(conteudoDoArquivo, matcher, regexAfastamentoIndividual, regexAfastamentoUnico, substituicoes);
+
+		return afastamentos;
 	}
 
 	/**
