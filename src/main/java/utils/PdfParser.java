@@ -24,7 +24,7 @@ public class PdfParser implements RadocParser {
 	private final String REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS = "Atividades acadêmicas especiais[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades administrativas";
 	private final String REGEX_ATIVIDADES_ADMINISTRATIVAS = "Atividades administrativas[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Produtos";
 	private final String REGEX_PRODUTOS = "Produtos[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
-	private final String REGEX_AFASTAMENTOS = "Afastamento([\\p{L}\\s-\\d]+)Atividades de ensino";
+	private final String REGEX_AFASTAMENTOS = "Afastamento[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades de ensino";
 
 	private File arquivoFonte;
 	private String conteudoArquivo;
@@ -184,7 +184,7 @@ public class PdfParser implements RadocParser {
 
 			while(matcherAtividadesIndividuais.find()) {
 				Matcher matcherAtividade;
-				String regexAtividadeUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Descrição Complementar:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição da Clientela";
+				String regexAtividadeUnica = "Tabela:(.+?)CHA:.+?(\\d+).+?Data início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data término:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Descrição Complementar:.+?(.+?)Descrição da Clientela:.+";
 				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
 				while(matcherAtividade.find()) {
 					String atividadeTratada = trateAtividadeAcademicaEspecial(matcherAtividade);
@@ -252,12 +252,13 @@ public class PdfParser implements RadocParser {
 		Matcher matcher = obtenhaMatcher(REGEX_AFASTAMENTOS, conteudoDoArquivo);
 
 		HashMap<String, String> substituicoes = new HashMap<String, String>();
-		substituicoes.put("Afastasmentos", "");
+		substituicoes.put("Afastamento", "");
+		substituicoes.put("Atividades de ensino", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 
-		String regexAfastamentoIndividual = "";
-		String regexAfastamentoUnico = "";
+		String regexAfastamentoIndividual = "Tabela:.+?Data de término:.+?\\d{2}\\/\\d{2}\\/\\d{4}";
+		String regexAfastamentoUnico = ".+?Processo:(.+?)Descrição.+?(.+?)Motivo:.+?CHA:(.+?)Data de início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data de término:.?+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
 		afastamentos = obtenhaRegistros(conteudoDoArquivo, matcher, regexAfastamentoIndividual, regexAfastamentoUnico, substituicoes);
 
@@ -386,15 +387,15 @@ public class PdfParser implements RadocParser {
 	 * @return A carga horária anual da atividade.
      */
 	private String trataCargaHoraria(Matcher matcher) {
-		if (!"".equals(matcher.group(3))) {
+		if (!"".equals(matcher.group(3)) && !" ".equals(matcher.group(3))) {
 			return matcher.group(3);
 		}
 
 		String dtInicio = matcher.group(4).trim();
 		String dtFim = matcher.group(5).trim();
 
-		if ("".equals(dtInicio)) dtInicio = dtFim;
-		if ("".equals(dtFim)) dtFim = dtInicio;
+		if ("".equals(dtInicio) || " ".equals(dtInicio)) dtInicio = dtFim;
+		if ("".equals(dtFim) || " ".equals(dtFim)) dtFim = dtInicio;
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		try {

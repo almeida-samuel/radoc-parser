@@ -11,7 +11,7 @@ public class ExtrairAtividades {
 	private static final String ARQUIVO_SAIDA_PATH = "src/test/resources/atividades.txt";
 
 	public static void main(String[] args){
-		PdfParser parser = new PdfParser(new File(ARQUIVO_ENTRADA_PATH));
+		PdfParser parser = new PdfParser(new File(args[0]));
 		parser.extraiAtividades(ARQUIVO_SAIDA_PATH);
 	}
 }
