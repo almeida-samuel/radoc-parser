@@ -23,6 +23,7 @@ public class PdfParser implements RadocParser {
 	private final String REGEX_ATIVIDADES_EM_PROJETOS = "Atividades em projetos([\\p{L}\\s-\\d\\W]+)Atividades de extensão";
 	private final String REGEX_ATIVIDADES_DE_EXTENSAO = "Atividades de extensão([\\p{L}\\s-\\d\\W]+)Atividades de qualificação";
 	private final String REGEX_ATIVIDADES_DE_QUALIFICACAO = "Atividades de qualificação[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades acadêmicas especiais";
+	private final String REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS = "Atividades acadêmicas especiais[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades administrativas";
 	private final String REGEX_ATIVIDADES_ADMINISTRATIVAS = "Atividades administrativas[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Produtos";
 	private final String REGEX_PRODUTOS = "Produtos[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
 
@@ -228,7 +229,40 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesAcademicasEspeciais() {
-		return new ArrayList<String>();
+		ArrayList<String> atividadesAcademicasEspeciais = new ArrayList<String>();
+		String conteudoDoArquivo = obtenhaConteudoArquivo();
+		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS, conteudoDoArquivo);
+
+		Map<String, String> substituicoes = new HashMap<String, String>();
+		substituicoes.put("Atividades acadêmicas especiais", "");
+		substituicoes.put("Atividades administrativas", "");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+
+		if(matcher.find()) {
+			conteudoDoArquivo = matcher.group();
+			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+
+			String regexAtividadesIndividuais = "Tabela:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bTabela\\b|$)";
+			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
+			int contadorAtividadesIndividuais = 0;
+
+			while(matcherAtividadesIndividuais.find()) {
+				Matcher matcherAtividade;
+				String regexAtividadeUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Descrição Complementar:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição da Clientela";
+				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
+				while(matcherAtividade.find()) {
+					String atividadeTratada = trateAtividadeAcademicaEspecial(matcherAtividade);
+					Matcher matcherAtividadeTratada = obtenhaMatcher("(.+?)\\n(.+?)\\n(.+?)\\n(.+)\\n(.+)",atividadeTratada);
+					matcherAtividadeTratada.find();
+					atividadesAcademicasEspeciais.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividadeTratada));
+				}
+
+				contadorAtividadesIndividuais++;
+			}
+		}
+
+		return atividadesAcademicasEspeciais;
 	}
 
 	/**
@@ -451,8 +485,18 @@ public class PdfParser implements RadocParser {
 
 		return (dtInicio + ", " + dtFim);
 	}
+
 	private String trateAtividadeDeExtensao(Matcher matcher){
 		return matcher.group(4) + "\n" + matcher.group(5) + "\n" + matcher.group(1) + "\n" + matcher.group(2) + "\n" + matcher.group(3);
 	}
 
+	/**
+	 * Rearranjo das atividadades acadêmicas especiais para a adequação ao formato
+	 * definido pelo método obtenhaLinhaDeRegistroPadronizado.
+	 * @param matcher Matcher para a atividade.
+	 * @return Rearranjo das atividades;
+     */
+	private String trateAtividadeAcademicaEspecial(Matcher matcher) {
+		return matcher.group(1) + "\n" + matcher.group(5) + "\n" + matcher.group(2) + "\n" + matcher.group(3) + "\n" + matcher.group(4);
+	}
 }

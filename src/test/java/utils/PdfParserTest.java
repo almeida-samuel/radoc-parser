@@ -75,10 +75,12 @@ public class PdfParserTest {
 	}
 
 	@Test
-
-	@Ignore
 	public void obtenhaAtividadesAcademicasEspeciais() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesAcademicasEspeciais = radocParser.obtenhaAtividadesAcademicasEspeciais();
 
+		assertEquals(8, atividadesAcademicasEspeciais.size());
 	}
 
 	@Test
