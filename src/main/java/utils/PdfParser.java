@@ -39,16 +39,29 @@ public class PdfParser implements RadocParser {
      */
 	public ArrayList<String> obtenhaAtividadesDeEnsino() {
 		ArrayList<String> atividadesDeEnsino = new ArrayList<String>();
-		String conteudo = obtenhaConteudoArquivo();
-		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ENSINO, conteudo);
+		String conteudoDoArquivo = obtenhaConteudoArquivo();
+		Map<String, String> substituicoes = new HashMap<String, String>();
+		substituicoes.put("Atividades de ensino", "");
+		substituicoes.put("Atividades de orientação", "");
+		substituicoes.put("\n+", "");
+		substituicoes.put("\r+", "");
+
+		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ENSINO, conteudoDoArquivo);
 
 		if(matcher.find()){
-			conteudo = matcher.group();
-			conteudo = conteudo.replaceAll("Atividades de ensino","");
-			conteudo = conteudo.replaceAll("Atividades de orientação","");
-			conteudo = conteudo.replaceAll("\\n+"," ");
-			String[] atividades = conteudo.replaceAll("\\r+","").split("\\d+\\s(SIM|NÃO)");
-			//atividadesDeEnsino = paraArrayList(atividades);
+			conteudoDoArquivo = substituiOcorrencias(matcher.group(), substituicoes);
+			String regexAtividadesIndividuais = "(.+?)()(\\d+).+?(\\d{4}).+?()(SIM|NÃO)";
+			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
+			int contadorAtividadesIndividuais = 0;
+			while(matcherAtividadesIndividuais.find()) {
+				Matcher matcherAtividade;
+				String regexAtividadeUnica = "(.+?)()(\\d{2,3}).+(\\d{4}).+()(SIM|NÃO)";
+				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
+				while(matcherAtividade.find()) {
+					atividadesDeEnsino.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
+				}
+				contadorAtividadesIndividuais++;
+			}
 		}
 
 		return atividadesDeEnsino;
@@ -135,7 +148,40 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesDeExtensao() {
-		return null;
+		ArrayList<String> atividadesDeOrientacao = new ArrayList<String>();
+		String conteudoDoArquivo = obtenhaConteudoArquivo();
+		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_EXTENSAO, conteudoDoArquivo);
+
+		Map<String, String> substituicoes = new HashMap<String, String>();
+		substituicoes.put("Atividades de extensão", "");
+		substituicoes.put("Atividades de qualificação", "Tabela");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+		substituicoes.put("[\\n\\r\\t]+", " ");
+
+		if(matcher.find()) {
+			conteudoDoArquivo = matcher.group();
+			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+
+			String regexAtividadesIndividuais = "Tabela:.+?(?=Tabela)";
+			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
+			int contadorAtividadesIndividuais = 0;
+
+			while(matcherAtividadesIndividuais.find()) {
+				Matcher matcherAtividade;
+				String regexAtividadeUnica = "Tabela:.+?CHA:.+?(\\d+).+?Data início:.+?(\\d+\\/\\d+\\/\\d+).+?Data término:.+?(\\d+\\/\\d+\\/\\d+).+?Descrição da atividade:.+?(.+).+?Descrição da clientela:.+?(.+)";
+				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
+				while(matcherAtividade.find()) {
+					String atividadeTratada = trateAtividadeDeExtensao(matcherAtividade);
+					Matcher matcherAtividadeTratada = obtenhaMatcher("(.+?)\\n(.+?)\\n(.+?)\\n(.+)\\n(.+)",atividadeTratada);
+					matcherAtividadeTratada.find();
+					atividadesDeOrientacao.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividadeTratada));
+				}
+
+				contadorAtividadesIndividuais++;
+			}
+		}
+
+		return atividadesDeOrientacao;
 	}
 
 	/**
@@ -404,6 +450,9 @@ public class PdfParser implements RadocParser {
 		if ("".equals(dtFim)) dtFim = dtInicio;
 
 		return (dtInicio + ", " + dtFim);
+	}
+	private String trateAtividadeDeExtensao(Matcher matcher){
+		return matcher.group(4) + "\n" + matcher.group(5) + "\n" + matcher.group(1) + "\n" + matcher.group(2) + "\n" + matcher.group(3);
 	}
 
 }

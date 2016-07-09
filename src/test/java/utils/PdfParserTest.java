@@ -34,10 +34,11 @@ public class PdfParserTest {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesDeEnsino = radocParser.obtenhaAtividadesDeEnsino();
+
+		assertEquals(7, atividadesDeEnsino.size());
 	}
 
 	@Test
-	@Ignore
 	public void obtenhaAtividadesDeOrientacao() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
@@ -56,9 +57,12 @@ public class PdfParserTest {
 	}
 
 	@Test
-	@Ignore
 	public void obtenhaAtividadesDeExtensao() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeExtensao = radocParser.obtenhaAtividadesDeExtensao();
 
+		assertEquals(5, atividadesDeExtensao.size());
 	}
 
 	@Test
