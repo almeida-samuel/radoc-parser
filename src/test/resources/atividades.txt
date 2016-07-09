@@ -1,0 +1,58 @@
+ATIVIDADES DE ENSINO
+1, SISTEMAS DE INFORMAÇÃO PROJETO FINAL DE CURSO 1  , 32, 2014, 2014
+2, CIÊNCIAS DA COMPUTAÇÃO PROJETO FINAL DE CURSO 1 NC  , 64, 2014, 2014
+3, ENGENHARIA DE SOFTWARE EXPERIMENTAÇÃO EM ENGENHARIA DESOFTWARE , 64, 2014, 2014
+4, ENGENHARIA DE SOFTWARE INTEGRAÇÃO 2  , 64, 2014, 2014
+5, SISTEMAS DE INFORMAÇÃO PROJETO FINAL DE CURSO 1  , 32, 2014, 2014
+
+ATIVIDADES DE ORIENTAÇÃO
+1,  ESTUDO DE CASO: IMPLANTAÇÃO DE PROCESSOS DA ITIL EM UMA MICROEMPRESA   Aluno orientado em projeto de final de curso , 1, 01082014, 31122014
+2,  UM ESTUDO DE CASO SOBRE ENGENHARIA DE REQUISITOS EM DESENVOLVIMENTO DE SOFTWARE BASEADO NO SCRUM   Aluno orientado em projeto de final de curso , 1, 01012014, 31122014
+3,  UM ESTUDO DE CASO SOBRE IMPLANTAÇÃO DE COBIT EM UMA MICROEMPRESA   Aluno orientado em projeto de final de curso , 1, 01082014, 31122014
+4,  DEFINIÇÃO DE PROCESSOS NA FABRICA DE SOFTWARE DO INSTITUTO DE INFORMÁTICA DA UFG   Aluno orientado em projeto de final de curso , 1, 01082014, 31122014
+5,  UM ESTUDO DE CASO SOBRE A INFLUÊNCIA DA REVISÃO DE CÓDIGO NA SEGURANÇA DE SOFTWARE   Aluno orientado em programa de iniciação científica(PIBIC/PIVIC/PROLICEN/PICME-OBMEP) , 32, 01012014, 30082014
+
+ATIVIDADES EM PROJETOS
+1, ESTRATÉGIAS E MÉTODOS PARA MELHORIA DE SOFTWARE Coordenador de projeto de pesquisa aprovado sem financiamento , 400, 04012010, 31122015
+2, Simpósio Brasileiro de Sistemas de Informação Participante de projeto de extensão/cultura cadastrado na PROEC , 100, 30062014, 18082014
+
+ATIVIDADES DE EXTENSÃO
+1, Palestra sobe Qualidade de Software com MPS.BR Membros da comunidade acadêmica da Universo em Goiânia-GO , 4, 29042014, 29042014
+
+ATIVIDADES DE QUALIFICAÇÃO
+1, Docente em licença para capacitação (Artigo 87, Lei N.8112)  Licença para Capacitação na área de Gestão de Serviços de Tecnologia da Informação, com fundamento no Artigo 87, da Lei nº 9527, de 10/12/97. , 440, 15032014, 14062014
+2, Participação em Congressos, Seminários, Encontros, Jornadas etc.  CNPq - 5º Encontro Técnico do RHAE Pesquisador na Empresa Brasília-DF , 16, 11112014, 12112014
+
+ATIVIDADES ACADÊMICAS ESPECIAIS
+1,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  Banca de PFC de Amanda Lira - Experiência de Implantação de Processos numa Fábrica de Software , 4, 17072014, 17072014
+2,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  Banca de PFC de Igor Alves - Um estudo de caso sobre Engenharia de Requisitos em desenvolvimento de software baseado no Scrum , 4, 16122014, 16122014
+3,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  Banca de PFC de Farid Junior - Um estudo de caso sobre implantação de Cobit em uma microempresa , 4, 16122014, 16122014
+4,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  Banca de PFC de Ariel Souza - Estudo de Caso: Implantação de Processos da ITIL em uma Microempresa , 4, 16122014, 16122014
+5,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  Banca de PFC de Deborah Ulacia - Definição de Processos na Fábrica de Software do INF , 4, 16122014, 16122014
+6,  Membro de corpo de júri - Concursos nacionais  Membro do Comitê Julgador do Concurso Nacional de Teses e Dissertações em Qualidade de Software , 12, 03072014, 03082014
+
+ATIVIDADES ADMINISTRATIVAS
+1, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  MEMBRO DO NÚCLEO DOCENTE ESTRUTURANTE - N.D.E. - ENGENHARIA DE SOFTWARE , 100, 01012014, 31122014
+2, Membros da CPPD ou da Comissão de Avaliação Institucional ou da Comissão Própria de Avaliação ou da CAD  PRESIDENTE DA COMISSÃO DE AVALIAÇÃO DOCENTE - CAD - PARA TRATAR PRIORITARIAMENTE  DOS PROCESSOS DE PROMOÇÃO À CLASSE D , 100, 01012014, 31122014
+3, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  COORDENADOR DA FÁBRICA DE SOFTWARE , 100, 01012014, 31122014
+4, Outras Atividades Administrativas e de Representação  Preenchimento de RADOC , 8, 01012014, 12112014
+5, Outras Atividades Administrativas e de Representação  Preenchimento de CV Lattes , 8, 01012014, 12112014
+6, Outras Atividades Administrativas e de Representação  PARTICIPAÇÕES EM REUNIÕES DO CD 2014 , 12, 01012014, 31122014
+
+PRODUTOS
+1, Trabalho completo publicado em anais de congresso cientifico  A User Interface Stereotype to build Web Portals , 8, 20102014, 20102014
+2, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do Trabalho: Implantação dos Processos de Verificação e Validação do CMMI utilizando o Framework Gaia Vero , 8, 27052014, 27052014
+3, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do Trabalho: Inspeção por Técnicas de Leitura: Uma Proposta para Incluir Requisitos de Acessibilidade , 8, 27052014, 27052014
+4, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do Trabalho: M3: Definindo um Modelo de Maturidade para apoio a Governança Ágil em TIC , 8, 27052014, 27052014
+5, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do Trabalho: Proposta de uma Ferramenta de Avaliação e Implantação da Sustentabilidade nas Fábricas de Software , 8, 27052014, 27052014
+6, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do Trabalho: Proposta para Teste de Usabilidade para Aplicações Móveis no Contexto de Computação Ubíqua , 8, 04082014, 04082014
+7, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do Trabalho: TDQM: Análise das Principais Dimensões no Contexto de Um Setor de Cadastro, Crédito e Cobrança , 8, 27052014, 27052014
+8, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do trabalho: Estendendo a linguagem XACML para o suporte ao Cálculo de Risco , 8, 27052014, 27052014
+9, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do trabalho: Um Mapeamento para Apoio ao Processo de Gerência de Portfólio de Projetos no Contexto do MR-MPS-SW adotando Práticas Ágeis , 8, 04082014, 04082014
+10, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação do trabalho: Uma Abordagem para Implementação do Processo de Projeto e Construção do Produto a partir da Adoção das Métodos Ágeis Crystal, XP , FDD , TDD e LEAN , 8, 04082014, 04082014
+11, Parecer de consultoria ad hoc em comitês de avaliação de concursos e editais de publicação de livros de editoras com corpo editorial  Membro do Comitê Julgador do Concurso de Teses e Dissertações em Qualidade de Software , 8, 04082014, 04082014
+12, Parecer de consultoria ad hoc para periódicos especializados com corpo editorial ou para instituições de fomento à pesquisa ou para livros de editoras com corpo editorial  Revisor da Revista de Sistemas de Informação da Faculdade Salesiana Maria Auxiliadora (ISSN 1983-5604) na edição nº 14 de Julho - Dezembro de 2014. , 8, 01072014, 01072014
+13, Trabalho completo publicado em anais de congresso cientifico  User Interface Stereotypes: A Model-Based Approach for Information Systems User Interfaces , 8, 27052014, 27052014
+
+AFASTAMENTOS
+1,  23070 - 25667 - 2013 - 10   LICENÇA PARA CAPACITAÇÃO, POR TRÊS MÊS (ES), A PARTIR DE 15/03/2014, COM FUNDAMENTO NO ARTIGO 87, DA LEI Nº 9527, DE 10/12/97. , 728, 15032014, 14062014

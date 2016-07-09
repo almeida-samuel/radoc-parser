@@ -13,3 +13,15 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '1.5.0'
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "ExtrairAtividades"
+    }
+
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it: zipTree(it)
+        }
+    }
+}
