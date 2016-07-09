@@ -39,31 +39,18 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
      */
 	public ArrayList<String> obtenhaAtividadesDeEnsino() {
-		ArrayList<String> atividadesDeEnsino = new ArrayList<String>();
+		ArrayList<String> atividadesDeEnsino;
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ENSINO, conteudoDoArquivo);
+		String regexAtividadesIndividuais = "(.+?)()(\\d+).+?(\\d{4}).+?()(SIM|NÃO)";
+		String regexAtividadeUnica = "(.+?)()(\\d{2,3}).+(\\d{4}).+()(SIM|NÃO)";
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades de ensino", "");
 		substituicoes.put("Atividades de orientação", "");
 		substituicoes.put("\n+", "");
 		substituicoes.put("\r+", "");
 
-		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ENSINO, conteudoDoArquivo);
-
-		if(matcher.find()){
-			conteudoDoArquivo = substituiOcorrencias(matcher.group(), substituicoes);
-			String regexAtividadesIndividuais = "(.+?)()(\\d+).+?(\\d{4}).+?()(SIM|NÃO)";
-			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-			int contadorAtividadesIndividuais = 0;
-			while(matcherAtividadesIndividuais.find()) {
-				Matcher matcherAtividade;
-				String regexAtividadeUnica = "(.+?)()(\\d{2,3}).+(\\d{4}).+()(SIM|NÃO)";
-				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-				while(matcherAtividade.find()) {
-					atividadesDeEnsino.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
-				}
-				contadorAtividadesIndividuais++;
-			}
-		}
+		atividadesDeEnsino = obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
 		return atividadesDeEnsino;
 	}
@@ -72,37 +59,20 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesDeOrientacao() {
-		ArrayList<String> atividadesDeOrientacao = new ArrayList<String>();
+		ArrayList<String> atividadesDeOrientacao;
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_ORIENTACAO, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades de orientação", "");
 		substituicoes.put("Atividades em projetos", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 
-		if(matcher.find()) {
-			conteudoDoArquivo = matcher.group();
-			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+		String regexAtividadesIndividuais = "Título do trabalho:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d+\\/\\d+\\/\\d+";
+		String regexAtividadeUnica = "Título do trabalho:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Tabela:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Orientando:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d+\\/\\d+\\/\\d+)[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+(\\d+\\/\\d+\\/\\d+)";
 
-			String regexAtividadesIndividuais = "Título do trabalho:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d+\\/\\d+\\/\\d+";
-			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-			int contadorAtividadesIndividuais = 0;
-
-			while(matcherAtividadesIndividuais.find()) {
-				Matcher matcherAtividade;
-				String regexAtividadeUnica = "Título do trabalho:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Tabela:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Orientando:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d+\\/\\d+\\/\\d+)[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+(\\d+\\/\\d+\\/\\d+)";
-				regexAtividadeUnica = regexAtividadeUnica.replace("REGEX_TUDO", REGEX_TUDO);
-				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-
-				while(matcherAtividade.find()) {
-					atividadesDeOrientacao.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
-				}
-
-				contadorAtividadesIndividuais++;
-			}
-		}
+		atividadesDeOrientacao = obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
 		return atividadesDeOrientacao;
 	}
@@ -111,36 +81,20 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesEmProjetos() {
-		ArrayList<String> atividadesEmProjetos = new ArrayList<String>();
+		ArrayList<String> atividadesEmProjetos;
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_EM_PROJETOS, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades em projetos", "");
 		substituicoes.put("Atividades de extensão", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 
-		if(matcher.find()) {
-			conteudoDoArquivo = matcher.group();
-			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+		String regexAtividadesIndividuais = "Título do Projeto:.*?Data Término:\\s*[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}";
+		String regexAtividadeUnica = "Título do Projeto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Unidade Responsável:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data Início:\\s+(\\d+\\/\\d+\\/\\d+)\\s+Data Término:\\s+(\\d+\\/\\d+\\/\\d+)";
 
-			String regexAtividadesIndividuais = "Título do Projeto:.*?Data Término:\\s*[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}";
-			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-			int contadorAtividadesIndividuais = 0;
-
-			while(matcherAtividadesIndividuais.find()) {
-				Matcher matcherAtividade;
-				String regexAtividadeUnica = "Título do Projeto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Unidade Responsável:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data Início:\\s+(\\d+\\/\\d+\\/\\d+)\\s+Data Término:\\s+(\\d+\\/\\d+\\/\\d+)";
-				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-
-				while(matcherAtividade.find()) {
-					atividadesEmProjetos.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
-				}
-
-				contadorAtividadesIndividuais++;
-			}
-		}
+		atividadesEmProjetos = obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
 		return atividadesEmProjetos;
 	}
@@ -153,7 +107,7 @@ public class PdfParser implements RadocParser {
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_EXTENSAO, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades de extensão", "");
 		substituicoes.put("Atividades de qualificação", "Tabela");
 		substituicoes.put("[\\n\\r\\t]+", " ");
@@ -189,38 +143,20 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesDeQualificacao() {
-		ArrayList<String> atividadesDeQualificacao = new ArrayList<String>();
+		ArrayList<String> atividadesDeQualificacao;
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_DE_QUALIFICACAO, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades de qualificação", "");
 		substituicoes.put("Atividades acadêmicas especiais", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 
-		if(matcher.find()) {
-			conteudoDoArquivo = matcher.group();
-			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+		String regexAtividadesQualificacaoIndividuais = "Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data de término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
+		String regexAtividadesQualificacaoUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data de início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data de término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-			System.out.println(conteudoDoArquivo);
-
-			String regexAtividadesIndividuais = "Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data de término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
-			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-			int contadorAtividadesIndividuais = 0;
-
-			while(matcherAtividadesIndividuais.find()) {
-				Matcher matcherAtividade;
-				String regexAtividadeUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data de início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data de término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
-				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-
-				while(matcherAtividade.find()) {
-					atividadesDeQualificacao.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
-				}
-
-				contadorAtividadesIndividuais++;
-			}
-		}
+		atividadesDeQualificacao = obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesQualificacaoIndividuais, regexAtividadesQualificacaoUnica, substituicoes);
 
 		return atividadesDeQualificacao;
 	}
@@ -233,7 +169,7 @@ public class PdfParser implements RadocParser {
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades acadêmicas especiais", "");
 		substituicoes.put("Atividades administrativas", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
@@ -269,36 +205,20 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaAtividadesAdministrativas() {
-		ArrayList<String> atividadesAdministrativas = new ArrayList<String>();
+		ArrayList<String> atividadesAdministrativas;
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_ATIVIDADES_ADMINISTRATIVAS, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Atividades administrativas", "");
 		substituicoes.put("Produtos", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 
-		if(matcher.find()) {
-			conteudoDoArquivo = matcher.group();
-			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+		String regexAtividadesIndividuais = "\\s+Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
+		String regexAtividadeUnica = "\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Órgão emissor[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-			String regexAtividadesIndividuais = "\\s+Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
-			Matcher matcherAtividadesIndividuais = obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-			int contadorAtividadesIndividuais = 0;
-
-			while(matcherAtividadesIndividuais.find()) {
-				Matcher matcherAtividade;
-				String regexAtividadeUnica = "\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Órgão emissor[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
-				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-
-				while(matcherAtividade.find()) {
-					atividadesAdministrativas.add(obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividade));
-				}
-
-				contadorAtividadesIndividuais++;
-			}
-		}
+		atividadesAdministrativas = obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
 		return atividadesAdministrativas;
 	}
@@ -307,37 +227,19 @@ public class PdfParser implements RadocParser {
 	 * {@inheritDoc}
 	 */
 	public ArrayList<String> obtenhaProdutos() {
-		ArrayList<String> produtos = new ArrayList<String>();
+		ArrayList<String> produtos;
 		String conteudoDoArquivo = obtenhaConteudoArquivo();
 		Matcher matcher = obtenhaMatcher(REGEX_PRODUTOS, conteudoDoArquivo);
 
-		Map<String, String> substituicoes = new HashMap<String, String>();
+		HashMap<String, String> substituicoes = new HashMap<String, String>();
 		substituicoes.put("Produtos", "");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 		substituicoes.put("[\\n\\r\\t]+", " ");
 
-		if(matcher.find()) {
-			conteudoDoArquivo = matcher.group();
-			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+		String regexProdutoIndividual = "Descrição do produto:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Editora:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bDescrição\\b|$)";
+		String regexProdutoUnico = "Descrição do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Título do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Autoria[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?()Data:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})()";
 
-			System.out.println(conteudoDoArquivo);
-
-			String regexProdutosIndividuais = "Descrição do produto:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Editora:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bDescrição\\b|$)";
-			Matcher matcherProdutosIndividuais = obtenhaMatcher(regexProdutosIndividuais, conteudoDoArquivo);
-			int contadorProdutosIndividuais = 0;
-
-			while(matcherProdutosIndividuais.find()) {
-				Matcher matcherAtividade;
-				String regexProdutoUnico = "Descrição do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Título do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Autoria[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?()Data:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})()";
-				matcherAtividade = obtenhaMatcher(regexProdutoUnico, matcherProdutosIndividuais.group());
-
-				while(matcherAtividade.find()) {
-					produtos.add(obtenhaLinhaDeRegistroPadronizado(contadorProdutosIndividuais, matcherAtividade));
-				}
-
-				contadorProdutosIndividuais++;
-			}
-		}
+		produtos = obtenhaRegistros(conteudoDoArquivo, matcher, regexProdutoIndividual, regexProdutoUnico, substituicoes);
 
 		return produtos;
 	}
@@ -384,6 +286,32 @@ public class PdfParser implements RadocParser {
 		return textoPDF;
 	}
 
+
+	private ArrayList<String> obtenhaRegistros(String conteudoDoArquivo, Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
+		ArrayList<String> registros = new ArrayList<String>();
+
+		if(matcherGeral.find()) {
+			conteudoDoArquivo = matcherGeral.group();
+			conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
+
+			Matcher matcherProdutosIndividuais = obtenhaMatcher(regexRegistrosIndividuais, conteudoDoArquivo);
+			int contadorProdutosIndividuais = 0;
+
+			while(matcherProdutosIndividuais.find()) {
+				Matcher matcherAtividade;
+				matcherAtividade = obtenhaMatcher(regexRegistroUnico, matcherProdutosIndividuais.group());
+
+				while(matcherAtividade.find()) {
+					registros.add(obtenhaLinhaDeRegistroPadronizado(contadorProdutosIndividuais, matcherAtividade));
+				}
+
+				contadorProdutosIndividuais++;
+			}
+		}
+
+		return registros;
+	}
+
 	/**
 	 * Remove as linhas de cabeçalho e rodapé de um Radoc em sua representação textual.
 	 */
@@ -415,7 +343,7 @@ public class PdfParser implements RadocParser {
 	 * @param substituicoes Map, em que: key= regex que se deseja substituir, value= valor da substituição.
      * @return O conteúdo alterado, já com as substituições feitas.
      */
-	private String substituiOcorrencias(String conteudo, Map<String, String> substituicoes) {
+	private String substituiOcorrencias(String conteudo, HashMap<String, String> substituicoes) {
 		for(String key : substituicoes.keySet()) {
 			conteudo = conteudo.replaceAll(key, substituicoes.get(key));
 		}
@@ -485,7 +413,11 @@ public class PdfParser implements RadocParser {
 
 		return (dtInicio + ", " + dtFim);
 	}
-
+	/**
+	 *Trata as atividades de extensão ao padrão de grupos
+	 * @param matcher Matcher para a atividade.
+	 * @return Atividade tratada
+	 */
 	private String trateAtividadeDeExtensao(Matcher matcher){
 		return matcher.group(4) + "\n" + matcher.group(5) + "\n" + matcher.group(1) + "\n" + matcher.group(2) + "\n" + matcher.group(3);
 	}

@@ -21,7 +21,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void extrairDocumentoRadocValido() throws Exception {
+	public void extrairDocumentoRadocValidoRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		PdfParser pdfParser = new PdfParser(arquivoRadoc);
 		String conteudoArquivo = pdfParser.obtenhaConteudoArquivo();
@@ -30,7 +30,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesDeEnsino() throws Exception {
+	public void obtenhaAtividadesDeEnsinoRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesDeEnsino = radocParser.obtenhaAtividadesDeEnsino();
@@ -39,7 +39,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesDeOrientacao() throws Exception {
+	public void obtenhaAtividadesDeOrientacaoRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesDeOrientacao = radocParser.obtenhaAtividadesDeOrientacao();
@@ -48,7 +48,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesEmProjetos() throws Exception {
+	public void obtenhaAtividadesEmProjetosRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesEmProjetos = radocParser.obtenhaAtividadesEmProjetos();
@@ -57,7 +57,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesDeExtensao() throws Exception {
+	public void obtenhaAtividadesDeExtensaoRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesDeExtensao = radocParser.obtenhaAtividadesDeExtensao();
@@ -66,7 +66,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesDeQualificacao() throws Exception {
+	public void obtenhaAtividadesDeQualificacaoRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesDeQualificacao = radocParser.obtenhaAtividadesDeQualificacao();
@@ -75,7 +75,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesAcademicasEspeciais() throws Exception {
+	public void obtenhaAtividadesAcademicasEspeciaisRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesAcademicasEspeciais = radocParser.obtenhaAtividadesAcademicasEspeciais();
@@ -84,7 +84,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaAtividadesAdministrativas() throws Exception {
+	public void obtenhaAtividadesAdministrativasRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> atividadesAdministrativas = radocParser.obtenhaAtividadesAdministrativas();
@@ -93,7 +93,7 @@ public class PdfParserTest {
 	}
 
 	@Test
-	public void obtenhaProdutos() throws Exception {
+	public void obtenhaProdutosRadoc2015() throws Exception {
 		File arquivoRadoc = new File("src/test/resources/radoc2015.pdf");
 		RadocParser radocParser = new PdfParser(arquivoRadoc);
 		ArrayList<String> produtos = radocParser.obtenhaProdutos();
@@ -102,8 +102,83 @@ public class PdfParserTest {
 	}
 
 	@Test
-	@Ignore
-	public void obtenhaAfastamentos() throws Exception {
+	public void extrairDocumentoRadocValidoRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		PdfParser pdfParser = new PdfParser(arquivoRadoc);
+		String conteudoArquivo = pdfParser.obtenhaConteudoArquivo();
 
+		assertNotEquals("",conteudoArquivo);
+	}
+
+	@Test
+	public void obtenhaAtividadesDeEnsinoRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeEnsino = radocParser.obtenhaAtividadesDeEnsino();
+
+		assertEquals(5, atividadesDeEnsino.size());
+	}
+
+	@Test
+	public void obtenhaAtividadesDeOrientacaoRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeOrientacao = radocParser.obtenhaAtividadesDeOrientacao();
+
+		assertEquals(5, atividadesDeOrientacao.size());
+	}
+
+	@Test
+	public void obtenhaAtividadesEmProjetosRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesEmProjetos = radocParser.obtenhaAtividadesEmProjetos();
+
+		assertEquals(2, atividadesEmProjetos.size());
+	}
+
+	@Test
+	public void obtenhaAtividadesDeExtensaoRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeExtensao = radocParser.obtenhaAtividadesDeExtensao();
+
+		assertEquals(1, atividadesDeExtensao.size());
+	}
+
+	@Test
+	public void obtenhaAtividadesDeQualificacaoRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesDeQualificacao = radocParser.obtenhaAtividadesDeQualificacao();
+
+		assertEquals(2, atividadesDeQualificacao.size());
+	}
+
+	@Test
+	public void obtenhaAtividadesAcademicasEspeciaisRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesAcademicasEspeciais = radocParser.obtenhaAtividadesAcademicasEspeciais();
+
+		assertEquals(6, atividadesAcademicasEspeciais.size());
+	}
+
+	@Test
+	public void obtenhaAtividadesAdministrativasRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> atividadesAdministrativas = radocParser.obtenhaAtividadesAdministrativas();
+
+		assertEquals(6, atividadesAdministrativas.size());
+	}
+
+	@Test
+	public void obtenhaProdutosRadoc2014() throws Exception {
+		File arquivoRadoc = new File("src/test/resources/radoc2014.pdf");
+		RadocParser radocParser = new PdfParser(arquivoRadoc);
+		ArrayList<String> produtos = radocParser.obtenhaProdutos();
+
+		assertEquals(13, produtos.size());
 	}
 }
