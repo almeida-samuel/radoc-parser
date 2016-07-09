@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/kaiomagalhaes/radoc-parser.svg?style=svg)](https://circleci.com/gh/kaiomagalhaes/radoc-parser)
+
 # RADOC-PARSER
 
 ## Run
