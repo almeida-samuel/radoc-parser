@@ -3,7 +3,7 @@
 ## Run
 ```
 Na pasta raiz do projeto:
-$ java -jar /radoc-parser/build/libs/radoc-parser-1.0-SNAPSHOT.jar PATH_ENTRADA PATH_SAIDA
+$ java -jar radoc.jar PATH_ENTRADA PATH_SAIDA
 ```
 
 Substitua: 
