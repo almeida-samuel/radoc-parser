@@ -117,8 +117,7 @@ public class PdfParser implements RadocParser {
 
 			while(matcherAtividadesIndividuais.find()) {
 				Matcher matcherAtividade;
-				String regexAtividadeUnica = "Título do Projeto:REGEX_TUDO(REGEX_TUDO)REGEX_TUDOTabela:REGEX_TUDO(REGEX_TUDO)Unidade Responsável:REGEX_TUDOCHA:REGEX_TUDO([\\d]+)REGEX_TUDOData Início:REGEX_TUDO(\\d{2}\\/\\d{2}\\/\\d{4})[\\s\\d\\p{L}\\/\\-\\.\\_\\:]+Data Término:REGEX_TUDO(\\d{2}\\/\\d{2}\\/\\d{4})";
-				regexAtividadeUnica = regexAtividadeUnica.replace("REGEX_TUDO", REGEX_TUDO);
+				String regexAtividadeUnica = "Título do Projeto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Unidade Responsável:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data Início:\\s+(\\d+\\/\\d+\\/\\d+)\\s+Data Término:\\s+(\\d+\\/\\d+\\/\\d+)";
 				matcherAtividade = obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
 
 				while(matcherAtividade.find()) {
