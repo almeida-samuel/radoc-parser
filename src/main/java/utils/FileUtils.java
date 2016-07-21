@@ -28,7 +28,7 @@ public class FileUtils {
      * Recupera as informações textuais de um Radoc utilizndo a ferramenta PDFBox.
      * @return O conteudo textual do Radoc.
      */
-    private static String extraiaTexto(File arquivoFonte) {
+    public static String extraiaTexto(File arquivoFonte) {
         String textoPDF = "";
 
         try {
