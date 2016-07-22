@@ -2,6 +2,7 @@ package utils;
 
 import parsers.ResolucaoParser;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,6 +13,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
 public class RegistrosUtils {
+
+    private static final String PATH_RESOLUCAO_TXT = "src/main/resources//atividadesconsuni32-2013.txt";
+    private static ResolucaoParser resolucaoParser = new ResolucaoParser(new File(PATH_RESOLUCAO_TXT));
+
     public static ArrayList<String> obtenhaRegistros(Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
         ArrayList<String> registros = new ArrayList<String>();
 
@@ -60,8 +65,23 @@ public class RegistrosUtils {
      * @return Linha padronizada de um registro.
      */
     public static String obtenhaLinhaDeRegistroPadronizado(int sequencial, Matcher matcher) {
+        HashMap<String, Map> anexoIIResolucao = resolucaoParser.obtenhaAtividadesResolucao();
         String linhaDeRegistroPadrao = "";
 
+        String codGrupoPontuacao = "";
+        for(String atividade : anexoIIResolucao.keySet()) {
+            String key = matcher.group(2).toLowerCase().trim();
+            HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(atividade).get(key);
+
+            if(mapaAtividade != null) {
+                codGrupoPontuacao = String.valueOf(mapaAtividade.get("codGrupoPontuacao"));
+                break;
+            }
+
+            codGrupoPontuacao = "000000000000";
+        }
+
+        linhaDeRegistroPadrao += codGrupoPontuacao + ", ";
         linhaDeRegistroPadrao += (sequencial+1) + ", ";
         linhaDeRegistroPadrao += matcher.group(1) + " " + matcher.group(2) + ", ";
         linhaDeRegistroPadrao += trataCargaHoraria(matcher) + ", ";

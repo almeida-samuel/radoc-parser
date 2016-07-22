@@ -69,7 +69,7 @@ public class ResolucaoParser {
         atividade.put("indice", matcher.group(2));
         atividade.put("descricao", matcher.group(3));
         atividade.put("pontuacao", matcher.group(4));
-        atividade.put("codgrupopontuacao", monteCodGrupoPontuacao(matcher));
+        atividade.put("codGrupoPontuacao", monteCodGrupoPontuacao(matcher));
 
         return atividade;
     }
@@ -77,7 +77,7 @@ public class ResolucaoParser {
     private String monteCodGrupoPontuacao(Matcher matcher){
 
         String naturezaAtividade = trateZeroEsquerda(String.valueOf(RomanHelper.valueOf(matcher.group(1).split("-")[0])));
-        String subNaturezaAtividade = trateZeroEsquerda(matcher.group(1).split("-")[1]);
+        String tipoAtividade = trateZeroEsquerda(matcher.group(1).split("-")[1]);
         String categoriaAtividade = "";
         String subCategoriaAtividade = "";
         String[] result = matcher.group(2).split("\\.");
@@ -89,7 +89,7 @@ public class ResolucaoParser {
             subCategoriaAtividade = trateZeroEsquerda(result[1]);
         }
 
-        return naturezaAtividade + subNaturezaAtividade + categoriaAtividade + subCategoriaAtividade;
+        return naturezaAtividade + tipoAtividade + categoriaAtividade + subCategoriaAtividade;
     }
 
     private String trateZeroEsquerda(String valor){
