@@ -1,0 +1,209 @@
+ATIVIDADES DE ENSINO
+I-1;1;aulas presenciais na graduação;10
+I-1;2;aulas do ensino a distância na graduação;10
+I-2;1;aulas presenciais na pós-graduação;10
+I-2;2;aulas do ensino a distância na pós-graduação;10
+PRODUÇÃO INTELECTUAL
+II-1;1.1;artigo completo ou texto literário publicado em periódico com classificação no qualis/capes;20
+II-1;1.2;artigo completo ou texto literário publicado em periódico não sujeito à classificação no qualis/capes;10
+II-1;2;resumo de artigo em periódicos especializados nacional ou internacional com corpo editorial;5
+II-1;3;artigos ou textos literários em repositórios de publicação eletrônica ligados a editoras ou universidades (total máximo a ser considerado neste item são 10 pontos);5
+II-1;4.1;resumo expandido publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso internacional;8
+II-1;4.2;resumo expandido publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso nacional;8
+II-1;4.3;resumo expandido publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso regional;6
+II-1;4.4;resumo expandido publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso local;6
+II-1;5.1;resumo simples publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso internacional;4
+II-1;5.2;resumo simples publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso nacional;3
+II-1;5.3;resumo simples publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso local;2
+II-1;5.4;resumo simples publicado em anais (total máximo a ser considerado neste item são 10 pontos) de congresso regional;2
+II-1;6;trabalho completo publicado em anais de congresso cientifico;10
+II-1;7;editor ou coordenador editorial de livro publicado com selo de editora que possua corpo editorial;20
+II-1;8;livro publicado com selo de editora que possua corpo editorial;40
+II-1;9;livro publicado com selo de editora que não possua corpo editorial;10
+II-1;10;capítulo de livro publicado com selo de editora que possua corpo editorial (total máximo a ser considerado neste item são 40 pontos);10
+II-1;11;edição ou organização de livro (coletânea) publicado com selo de editora que possua corpo editorial;12
+II-1;12;capítulo traduzido de livro publicado com selo de editora que possua corpo editorial (total máximo a ser considerado neste item são 20 pontos);5
+II-1;13;tradução ou revisão científica de livro traduzido e publicado com selo de editora que possua corpo editorial;10
+II-1;14;resenhas, prefácios ou verbetes;10
+II-1;15;livro didático desenvolvido para projetos institucionais/governamentais;10
+II-1;16;editor de periódicos especializados indexados com corpo editorial;20
+II-1;17.1;editor de jornais ou revistas com distribuição local;15
+II-1;17.2;editor de jornais ou revistas com distribuição regional;15
+II-1;17.3;editor de jornais ou revistas com distribuição nacional;20
+II-1;17.4;editor de jornais ou revistas com distribuição internacional;20
+II-1;18;dissertação de mestrado defendida de aprovada (sendo o docente o autor da dissertação);10
+II-1;19;tese de doutorado defendida e aprovada (sendo o docente o autor da tese);15
+II-2;1.1;criação, produção e direção de filmes, vídeos, discos, audiovisuais, coreografias, peças teatrais, óperas ou musicais, ou musicais apresentados em eventos locais;10
+II-2;1.2;criação, produção e direção de filmes, vídeos, discos, audiovisuais, coreografias, peças teatrais, óperas ou musicais, ou musicais apresentados em eventos regionais;10
+II-2;1.3;criação, produção e direção de filmes, vídeos, discos, audiovisuais, coreografias, peças teatrais, óperas ou musicais, ou musicais apresentados em eventos nacionais;15
+II-2;1.4;criação, produção e direção de filmes, vídeos, discos, audiovisuais, coreografias, peças teatrais, óperas ou musicais, ou musicais apresentados em eventos internacionais;20
+II-2;2;criação e produção do projeto gráfico de livros: concepção gráfica (mancha gráfica, diagramação, escolha de fonte);10
+II-2;3;design (gráfico, de luz, de figurino e formas animadas, cenográfico e similares);5
+II-2;4;design de impressos por peça (limitados a 20 pontos);1
+II-2;5;design de interfaces digitais;10
+II-2;6;design de interfaces digitais com inovação tecnológica;20
+II-2;7;produtos com inovação tecnológica;20
+II-2;8.1;exposições e apresentações artísticas locais ou regionais participação individual, camerista, solista ou ator principal;16
+II-2;8.2;exposições e apresentações artísticas locais ou regionais participação coletiva ou coadjuvante;5
+II-2;9.1;exposições e apresentações artísticas nacionais participação individual, camerista, solista ou ator principal;20
+II-2;9.2;exposições e apresentações artísticas nacionais participação coletiva ou coadjuvante;10
+II-2;10.1;exposições e apresentações artísticas internacionais participação individual, camerista, solista ou ator principal;20
+II-2;10.2;exposições e apresentações artísticas internacionais participação coletiva ou coadjuvante;15
+II-2;11.1;composições musicais editadas;20
+II-2;11.2;composições musicais publicadas em revistas científicas;20
+II-2;11.3;composições musicais gravadas;15
+II-2;11.4;composições musicais executadas em apresentações públicas;15
+II-2;12.1;produção artística, arquitetônica ou de design premiada em evento local ou regional;5
+II-2;12.2;produção artística, arquitetônica ou de design premiada em evento regional;5
+II-2;12.3;produção artística, arquitetônica ou de design premiada em evento nacional;10
+II-2;12.4;produção artística, arquitetônica ou de design premiada em evento internacional;15
+II-2;13;arranjos musicais (canto, coral e orquestral);5
+II-2;14;apresentação artística ou cultural em rádio ou tv;5
+II-2;15;sonoplastia (cinema, música, rádio, televisão, teatro);3
+II-3;1;desenvolvimento de programa de computador (software) com registro no inpi ou com ampla disponibilização em ambientes de software livre;20
+II-3;2;desenvolvimento de software com divulgação em periódicos indexados e com corpo editorial ou em anais de congresso científico;10
+II-3;3;desenvolvimento de software para uso institucional (total máximo a ser considerado neste item são 10 pontos);5
+II-3;4;desenvolvimento e registro no inpi de topografia de circuito integrado;20
+II-3;5;desenvolvimento de produto, processo ou técnica com registro de patente no inpi ou modelo de utilidade;20
+II-3;6;desenvolvimento e registro no inpi de desenho industrial;20
+II-3;7;desenvolvimento e registro no inpi de processo de indicação geográfica;20
+II-3;8;desenvolvimento e registro no inpi de marcas;5
+II-3;9;participação em comitê editorial de periódicos especializados indexados e de editoras universitárias;10
+II-3;10;parecer de consultoria ad hoc em comitês de avaliação de concursos e editais de publicação de livros de editoras com corpo editorial;3
+II-3;11;parecer de consultoria ad hoc para periódicos especializados com corpo editorial ou para instituições de fomento à pesquisa ou para livros de editoras com corpo editorial;3
+II-3;12.1;parecer com anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);10
+II-3;12.2;parecer sem anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);5
+II-3;12.3;projeto ou relatório técnico com anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);20
+II-3;12.4;projeto ou relatório técnico sem anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);10
+II-3;13;anais, manuais, catálogos, boletins, com ficha bibliográfica (organizador / redator);5
+II-3;14;produção e publicação de mapas, cartas ou similares;10
+II-3;15;desenvolvimento de maquete;5
+II-3;16.1;restauração de obra artística;20
+II-3;16.2;conservação de obra artística;10
+II-3;17;curadoria de exposições;5
+II-3;18.1;produção de cinema, vídeo, rádio, tv ou mídias digitais editor;20
+II-3;18.2;participante (total máximo a ser considerado neste item são 9 pontos);3
+II-4;1;artigos de opinião veiculados em jornais e revistas (eletrônico ou impresso);1
+II-4;2;texto ou material didático para uso institucional (não fracionados e com ampla divulgação);2
+II-4;3;artigos de divulgação científica, tecnológica e artística veiculados em jornais e revistas (eletrônico ou impresso);3
+II-4;4;apresentação oral de trabalho publicado em anais de congresso científico (total máximo a ser considerado neste item são 9 pontos);3
+II-4;5;apresentação em painel de trabalho publicado em anais de congresso científico (total máximo a ser considerado neste item são 3 pontos);1
+II-4;6;trabalho premiado em evento científico nacional ou internacional;5
+II-4;7;tese, dissertação e trabalho de iniciação científica premiados por instituições de fomento (sendo o docente o autor ou orientador do produto);8
+ATIVIDADES DE PESQUISA E EXTENSÃO
+III-1;1;coordenador de projeto conjuntos de pesquisa e cooperação científica (tipo prodoc, procad, pnpd, entre outros) e de cursos minter e dinter aprovados por órgãos oficiais de fomento;10
+III-1;2;coordenador de projeto de pesquisa aprovado com comprovação de financiamento (exceto bolsas);10
+III-1;3;coordenador de projeto de pesquisa aprovado sem financiamento (total máximo a ser considerado neste item são 10 pontos);5
+III-2;1;coordenador de projeto de extensão aprovado com comprovação de financiamento (exceto bolsas);10
+III-2;2;coordenador de projeto ou programa de extensão/cultura cadastrado na proec (total máximo a ser considerado neste item são 15 pontos);5
+III-2;3;coordenador de contratos e de convênios de cooperação institucional internacional;5
+III-2;4;coordenador de contratos e de convênios de cooperação institucional nacional;3
+III-2;5;participante de projeto de extensão/cultura cadastrado na proec (total máximo a ser considerado neste item são 15 pontos);3
+III-2;6;curso de extensão ministrado com 20 ou mais horas (total máximo a ser considerado neste item são 15 pontos);5
+III-2;7;curso de extensão ministrado com menos de 20 horas (total máximo a ser considerado neste item são 10 pontos);2
+III-2;8.1;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico evento internacional (total máximo a ser considerado neste item são 15 pontos);5
+III-2;8.2;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico evento nacional (total máximo a ser considerado neste item são 12 pontos);4
+III-2;8.3;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico evento regional ou local (total máximo a ser considerado neste item são 9 pontos);3
+III-2;9.1;promoção ou produção de eventos artísticos e científicos locais presidente;4
+III-2;9.2;promoção ou produção de eventos artísticos e científicos locais comissão organizadora;2
+III-2;10.1;promoção ou produção de eventos artísticos e científicos regionais presidente;6
+III-2;10.2;promoção ou produção de eventos artísticos e científicos regionais comissão organizadora;3
+III-2;11.1;promoção ou produção de eventos artísticos e científicos nacionais presidente;8
+III-2;11.2;promoção ou produção de eventos artísticos e científicos nacionais comissão organizadora;4
+III-2;12.1;promoção ou produção de eventos artísticos e científicos internacionais presidente;10
+III-2;12.2;promoção ou produção de eventos artísticos e científicos internacionais comissão organizadora;5
+ATIVIDADES ADMINISTRATIVAS E DE REPRESENTAÇÃO
+IV-1;1;reitor ou vice-reitor ou pró-reitor;14
+IV-1;2;chefe de gabinete;10
+IV-1;3;coordenador ou assessor vinculado à reitoria;10
+IV-1;4;diretor de unidade acadêmica, de unidade acadêmica especial ou do cepae;10
+IV-1;5;diretor de campus do interior;12
+IV-1;6;vice-diretor de campus do interior;12
+IV-1;7;diretor geral do hospital das clínicas;10
+IV-1;8;coordenador ou assessor vinculado às pró-reitorias ou à direção dos campus do interior;8
+IV-1;9;coordenador de programa de pós-graduação stricto sensu;8
+IV-1;10;coordenador de curso de ensino básico ou de graduação;8
+IV-1;11;vice-diretor de unidade acadêmica ou unidade acadêmica especial ou do cepae;8
+IV-1;12;diretor do hospital veterinário;8
+IV-1;13;diretor de órgão da administração (cercomp, cga, cegraf, ciar, ddrh, cs, siass, museu, rádio, biblioteca etc.);8
+IV-2;1;coordenador de projeto institucional com financiamento ou de contratos e convênio com plano de trabalho aprovado;5
+IV-2;2;coordenador de curso de especialização, residência médica ou residência multiprofissional em saúde (total máximo a ser considerado neste item são 10 pontos);10
+IV-2;3;membro representante de classe da carreira docente no consuni;10
+IV-2;4;membro do conselho de curadores ou do plenário do cepec ou de conselho de fundações;10
+IV-2;5;atividades acadêmicas e administrativas designadas por portaria do reitor, pró-reitor ou diretor de unidade acadêmica com carga horária >=150 horas;10
+IV-3;1;presidente da cppd;7
+IV-3;2;presidente da comissão de avaliação institucional ou da comissão própria de avaliação;5
+IV-3;3;membros da coordenação permanente do centro de seleção;5
+IV-3;4;diretores do hc;5
+IV-3;5;presidente do comitê de ética em pesquisa da ufg e do hc/ufg;5
+IV-3;6;membros da cppd ou da comissão de avaliação institucional ou da comissão própria de avaliação ou da cad;5
+IV-3;7;coordenador de pesquisa ou de ensino ou de extensão ou de estágio das unidades acadêmicas;3
+IV-3;8;chefe de departamento;3
+IV-3;9;chefe do pronto socorro ou da maternidade ou do cerof do hospital das clínicas da ufg;3
+IV-3;10;coordenador das atividades de interação com a sociedade;3
+IV-3;11;coordenador das atividades de pesquisa e de pós–graduação lato sensu;3
+IV-3;12;membros do comitê de ética da ufg e do hc/ufg;3
+IV-3;13;membros do comitê interno e externo do pibic;3
+IV-4;1;representante titular em conselho de classe profissional com carga horária igual ou superior a 150 horas;10
+IV-4;2;presidente do sindicato de docentes da ufg;10
+IV-4;3;diretor do sindicato de docentes da ufg;3
+IV-4;4;representante sindical com carga horária igual ou superior a 150 horas;10
+IV-4;5;representante em entidade científica, artística e cultural com carga horária igual ou superior a 150 horas;10
+IV-4;6;representante em comissão de órgão governamental com carga horária igual ou superior a 150 horas;10
+OUTRAS ATIVIDADES
+V-1;1;aluno orientado em tese de doutorado defendida e aprovad;20
+V-1;2;aluno co-orientado em tese de doutorado defendida e aprovada;7
+V-1;3;aluno orientado em tese de doutorado em andamento;10
+V-1;4;aluno co-orientado em tese de doutorado em andamento;4
+V-1;5;aluno orientado em dissertação de mestrado defendida e aprovada;15
+V-1;6;aluno co-orientado em dissertação de mestrado defendida e aprovada;5
+V-1;7;aluno orientado em dissertação de mestrado em andamento;8
+V-1;8;aluno co-orientado em dissertação de mestrado em andamento;3
+V-1;9;aluno orientado em monografia de especialização aprovada (máximo de 24 pontos);8
+V-1;10;aluno orientado em monografia de especialização em andamento (total máximo a ser considerado neste item são 12 pontos);4
+V-1;11;aluno orientado em residência médica ou em residência multiprofissional em saúde;5
+V-1;12;aluno orientado em estágio supervisionado;3
+V-1;13;aluno orientado em projeto de final de curso;3
+V-1;14;aluno de outra ife orientado em tese de doutorado defendida e aprovada;6
+V-1;15;aluno de outra ife co-orientado em tese de doutorado defendida e aprovada;3
+V-1;16;aluno de outra ife orientado em tese de doutorado em andamento;3
+V-1;17;aluno de outra ife co-orientado em tese de doutorado em andamento;2
+V-1;18;aluno de outra ife orientado em dissertação de mestrado defendida e aprovada;4
+V-1;19;aluno de outra ife co-orientado em dissertação de mestrado defendida e aprovada;2
+V-1;20;aluno de outra ife orientado em dissertação de mestrado em andamento;2
+V-1;21;aluno de outra ife co-orientado em dissertação de mestrado em andamento;1
+V-1;22;aluno orientado em programa de iniciação científica (pibic/pivic/prolicen/picme-obmep);6
+V-1;13;aluno orientado em programa de iniciação científica júnior;5
+V-1;24;aluno orientado em programa especial de treinamento (pet);5
+V-1;25;aluno orientado com bolsa de dti, pibit, at, jovens talentos e similares;5
+V-1;26;aluno orientado com bolsa de licenciatura (pibid e similares);5
+V-1;27;aluno orientado com bolsa extensão/cultura/ensino;5
+V-1;28;aluno orientado em projetos de extensão/cultura/ensino sem bolsa;3
+V-1;29;aluno orientado com bolsa procom ou similar, vinculada a projeto de pesquisa/extensão/ensino;5
+V-1;30;aluno orientado em programa de monitoria;3
+V-1;31;aluno orientado em atividade não curricular com bolsa;2
+V-1;32;aluno orientado em atividade não curricular sem bolsa;1
+V-1;33;pesquisador supervisionado em estágio de pós-doutoramento (prodoc, pnpd, dcr, entre outros);8
+V-1;34;aluno orientado em prática como componente curricular (pcc);1
+V-2;1.1;membro de banca de concurso para docente efetivo na instituição;4
+V-2;1.2;membro de banca de concurso para docente efetivo em outra instituição;6
+V-2;2;membro de banca de concurso para docente substituto;2
+V-2;3.1;membro de banca de defesa de dissertação de mestrado na instituição;4
+V-2;3.2;membro de banca de defesa de dissertação de mestrado em outra instituição;6
+V-2;4.1;membro de banca de defesa de tese de doutorado na instituição;6
+V-2;4.2;membro de banca de defesa de tese de doutorado em outra instituição;8
+V-2;5.1;membro de banca de qualificação de mestrado na instituição;3
+V-2;5.2;membro de banca de qualificação de mestrado em outra instituição;4
+V-2;6.1;membro de banca de qualificação de doutorado na instituição;5
+V-2;6.2;membro de banca de qualificação de doutorado em outra instituição;6
+V-2;7;membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas (total máximo a ser considerado neste item são 10 pontos);2
+V-2;8.1;membro de corpo de júri concursos internacionais;8
+V-2;8.2;membro de corpo de júri concursos nacionais;6
+V-2;9;cursos, palestras ou treinamento não curricular ministrados para docentes, funcionários ou alunos da ufg;2
+V-2;10;coordenador de projeto institucional de intercâmbio internacional;10
+V-3;1;docente regularmente matriculado em curso de doutorado com relatórios de pós-graduação aprovados (pontuação por mês de curso);12
+V-3;2;estágio pós-doutoral ou estágio sênior (pontuação por mês de estágio);12
+V-3;3;docente em licença para capacitação (artigo 87, lei n.8112) (pontuação por mês de licença);12
+V-3;4;curso de aperfeiçoamento realizado com carga horária superior a 40 horas;3
+V-3;5;curso de aperfeiçoamento realizado com carga horária inferior a 40 horas;1
+V-3;6;participação em congressos, seminários, encontros, jornadas etc. (total máximo a ser considerado neste item são 3 pontos);1

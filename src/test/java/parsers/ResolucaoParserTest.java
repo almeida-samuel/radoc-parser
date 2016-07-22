@@ -5,12 +5,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ResolucaoParserTest {
 
-    private final String resolucaoPath = "src/test/resources/Resolucao_CONSUNI_2013_0032.pdf";
+    private final String resolucaoPath = "src/main/resources//atividadesconsuni32-2013.txt";
     private File resolucaoFile;
     private ResolucaoParser resolucaoParser;
 
@@ -26,8 +28,8 @@ public class ResolucaoParserTest {
     }
 
     @Test
-    public void obtemConteudoResolucao() {
-        String conteudoResolucao = resolucaoParser.obtenhaConteudoResolucao();
-        assertNotEquals("",conteudoResolucao);
+    public void obtemSuperGrupoDeAtividades() {
+        HashMap<String, Map> grupoDeAtividades = resolucaoParser.obtenhaAtividadesResolucao();
+        assertEquals(5, grupoDeAtividades.keySet().size());
     }
 }

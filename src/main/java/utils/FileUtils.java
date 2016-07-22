@@ -7,6 +7,8 @@ import org.apache.pdfbox.util.PDFTextStripper;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileUtils {
     private static final String ENCONDING = "UTF-8";
@@ -44,6 +46,22 @@ public class FileUtils {
         }
 
         return textoPDF;
+    }
+
+    /**
+     * Recupera as informações textuais de um TXT.
+     * @return O conteudo textual do arquivoTXT.
+     */
+    public static String extraiaTextoTXT(File arquivoFonte) {
+        String textoTXT = "";
+
+        try {
+            textoTXT = new String(Files.readAllBytes(Paths.get(arquivoFonte.toURI())), ENCONDING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return textoTXT;
     }
 
 

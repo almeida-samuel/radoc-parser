@@ -25,37 +25,22 @@ public class PdfParser implements RadocParser {
 
 	private Atividades atividades;
 
-	@Override
 	public ArrayList<String> obtenhaAtividadesDeEnsino() {
 		return atividades.obtenhaAtividadesDeEnsino();
 	}
-
-	@Override
 	public ArrayList<String> obtenhaAtividadesDeOrientacao() {
 		return atividades.obtenhaAtividadesDeOrientacao();
 	}
-
-	@Override
 	public ArrayList<String> obtenhaAtividadesEmProjetos() {
 		return atividades.obtenhaAtividadesEmProjetos();
 	}
-
-	@Override
 	public ArrayList<String> obtenhaAtividadesDeExtensao() {
 		return atividades.obtenhaAtividadesDeExtensao();
 	}
-
-	@Override
 	public ArrayList<String> obtenhaAtividadesDeQualificacao() {
 		return atividades.obtenhaAtividadesDeQualificacao();
 	}
-
-	@Override
-	public ArrayList<String> obtenhaAtividadesAcademicasEspeciais() {
-		return atividades.obtenhaAtividadesAcademicasEspeciais();
-	}
-
-	@Override
+	public ArrayList<String> obtenhaAtividadesAcademicasEspeciais() {return atividades.obtenhaAtividadesAcademicasEspeciais();}
 	public ArrayList<String> obtenhaAtividadesAdministrativas() {
 		return atividades.obtenhaAtividadesAdministrativas();
 	}
