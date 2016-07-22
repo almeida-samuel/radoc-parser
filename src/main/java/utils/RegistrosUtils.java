@@ -65,23 +65,9 @@ public class RegistrosUtils {
      * @return Linha padronizada de um registro.
      */
     public static String obtenhaLinhaDeRegistroPadronizado(int sequencial, Matcher matcher) {
-        HashMap<String, Map> anexoIIResolucao = resolucaoParser.obtenhaAtividadesResolucao();
         String linhaDeRegistroPadrao = "";
 
-        String codGrupoPontuacao = "";
-        for(String atividade : anexoIIResolucao.keySet()) {
-            String key = matcher.group(2).toLowerCase().trim();
-            HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(atividade).get(key);
-
-            if(mapaAtividade != null) {
-                codGrupoPontuacao = String.valueOf(mapaAtividade.get("codGrupoPontuacao"));
-                break;
-            }
-
-            codGrupoPontuacao = "000000000000";
-        }
-
-        linhaDeRegistroPadrao += codGrupoPontuacao + ", ";
+        linhaDeRegistroPadrao += obtenhaCodGrupoPontuacao(matcher) + ", ";
         linhaDeRegistroPadrao += (sequencial+1) + ", ";
         linhaDeRegistroPadrao += matcher.group(1) + " " + matcher.group(2) + ", ";
         linhaDeRegistroPadrao += trataCargaHoraria(matcher) + ", ";
@@ -135,5 +121,30 @@ public class RegistrosUtils {
         if ("".equals(dtFim)) dtFim = dtInicio;
 
         return (dtInicio + ", " + dtFim);
+    }
+
+    /**
+     * Recupera o codGrupoPontuacao de uma dada atividade.
+     * @param matcher Matcher para a atividade.
+     * @return O codGrupoPontuacao.
+     */
+    private static String obtenhaCodGrupoPontuacao(Matcher matcher) {
+        HashMap<String, Map> anexoIIResolucao = resolucaoParser.obtenhaAtividadesResolucao();
+        String key = matcher.group(2).toLowerCase().trim();
+
+        String codGrupoPontuacao = "000000000000";
+        for(String atividade : anexoIIResolucao.keySet()) {
+            HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(atividade);
+
+            for(String k : mapaAtividade.keySet()) {
+                if(k.equals(key) || k.contains(key)) {
+                    codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get("codGrupoPontuacao"));
+                    break;
+                }
+            }
+
+            if(!codGrupoPontuacao.equals("000000000000")) break;
+        }
+        return codGrupoPontuacao;
     }
 }
