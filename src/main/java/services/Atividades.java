@@ -41,7 +41,7 @@ public class Atividades {
         substituicoes.put("\n+", "");
         substituicoes.put("\r+", "");
 
-        atividadesDeEnsino = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        atividadesDeEnsino = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesDeEnsino;
     }
@@ -63,7 +63,7 @@ public class Atividades {
         String regexAtividadesIndividuais = "Título do trabalho:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d+\\/\\d+\\/\\d+";
         String regexAtividadeUnica = "Título do trabalho:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Tabela:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Orientando:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d+\\/\\d+\\/\\d+)[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+(\\d+\\/\\d+\\/\\d+)";
 
-        atividadesDeOrientacao = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        atividadesDeOrientacao = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesDeOrientacao;
     }
@@ -85,7 +85,7 @@ public class Atividades {
         String regexAtividadesIndividuais = "Título do Projeto:.*?Data Término:\\s*[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}";
         String regexAtividadeUnica = "Título do Projeto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Unidade Responsável:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data Início:\\s+(\\d+\\/\\d+\\/\\d+)\\s+Data Término:\\s+(\\d+\\/\\d+\\/\\d+)";
 
-        atividadesEmProjetos = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        atividadesEmProjetos = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesEmProjetos;
     }
@@ -147,7 +147,7 @@ public class Atividades {
         String regexAtividadesQualificacaoIndividuais = "Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data de término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
         String regexAtividadesQualificacaoUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data de início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data de término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-        atividadesDeQualificacao = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesQualificacaoIndividuais, regexAtividadesQualificacaoUnica, substituicoes);
+        atividadesDeQualificacao = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesQualificacaoIndividuais, regexAtividadesQualificacaoUnica, substituicoes);
 
         return atividadesDeQualificacao;
     }
@@ -209,7 +209,7 @@ public class Atividades {
         String regexAtividadesIndividuais = "\\s+Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
         String regexAtividadeUnica = "\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Órgão emissor[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-        atividadesAdministrativas = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        atividadesAdministrativas = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesAdministrativas;
     }

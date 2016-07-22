@@ -1,19 +1,22 @@
 package utils;
 
+import parsers.ResolucaoParser;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
 public class RegistrosUtils {
-    public static ArrayList<String> obtenhaRegistros(String conteudoDoArquivo, Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
+    public static ArrayList<String> obtenhaRegistros(Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
         ArrayList<String> registros = new ArrayList<String>();
 
         if(matcherGeral.find()) {
-            conteudoDoArquivo = matcherGeral.group();
+            String conteudoDoArquivo = matcherGeral.group();
             conteudoDoArquivo = substituiOcorrencias(conteudoDoArquivo, substituicoes);
 
             Matcher matcherProdutosIndividuais = MatcherUtils.obtenhaMatcher(regexRegistrosIndividuais, conteudoDoArquivo);

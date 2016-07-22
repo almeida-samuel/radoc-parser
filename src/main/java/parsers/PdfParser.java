@@ -61,7 +61,7 @@ public class PdfParser implements RadocParser {
 		String regexProdutoIndividual = "Descrição do produto:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Editora:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bDescrição\\b|$)";
 		String regexProdutoUnico = "Descrição do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Título do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Autoria[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?()Data:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})()";
 
-		produtos = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexProdutoIndividual, regexProdutoUnico, substituicoes);
+		produtos = RegistrosUtils.obtenhaRegistros(matcher, regexProdutoIndividual, regexProdutoUnico, substituicoes);
 
 		return produtos;
 	}
@@ -83,7 +83,7 @@ public class PdfParser implements RadocParser {
 		String regexAfastamentoIndividual = "Tabela:.+?Data de término:.+?\\d{2}\\/\\d{2}\\/\\d{4}";
 		String regexAfastamentoUnico = ".+?Processo:(.+?)Descrição.+?(.+?)Motivo:.+?CHA:(.+?)Data de início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data de término:.?+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-		afastamentos = RegistrosUtils.obtenhaRegistros(conteudoDoArquivo, matcher, regexAfastamentoIndividual, regexAfastamentoUnico, substituicoes);
+		afastamentos = RegistrosUtils.obtenhaRegistros(matcher, regexAfastamentoIndividual, regexAfastamentoUnico, substituicoes);
 
 		return afastamentos;
 	}
