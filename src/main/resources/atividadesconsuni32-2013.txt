@@ -144,12 +144,12 @@ IV-3;10;coordenador das atividades de interação com a sociedade;3
 IV-3;11;coordenador das atividades de pesquisa e de pós–graduação lato sensu;3
 IV-3;12;membros do comitê de ética da ufg e do hc/ufg;3
 IV-3;13;membros do comitê interno e externo do pibic;3
-IV-4;1;representante titular em conselho de classe profissional com carga horária igual ou superior a 150 horas;10
+IV-4;1;representante titular em conselho de classe profissional com carga horária >=150 horas;10
 IV-4;2;presidente do sindicato de docentes da ufg;10
 IV-4;3;diretor do sindicato de docentes da ufg;3
-IV-4;4;representante sindical com carga horária igual ou superior a 150 horas;10
-IV-4;5;representante em entidade científica, artística e cultural com carga horária igual ou superior a 150 horas;10
-IV-4;6;representante em comissão de órgão governamental com carga horária igual ou superior a 150 horas;10
+IV-4;4;representante sindical com carga horária >=150 horas;10
+IV-4;5;representante em entidade científica, artística e cultural com carga horária >=150 horas;10
+IV-4;6;representante em comissão de órgão governamental com carga horária >=150 horas;10
 OUTRAS ATIVIDADES
 V-1;1;aluno orientado em tese de doutorado defendida e aprovad;20
 V-1;2;aluno co-orientado em tese de doutorado defendida e aprovada;7
