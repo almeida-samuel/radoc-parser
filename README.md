@@ -8,6 +8,12 @@ Na pasta raiz do projeto:
 $ java -jar radoc.jar PATH_ENTRADA PATH_SAIDA
 ```
 
+Exemplo
+
+```
+ java -jar radoc.jar src/test/resources/radoc2014.pdf src/test/resources/saida.txt
+```
+
 Substitua:
 
 `PATH_ENTRADA` pelo caminho do `.pdf` de entrada. Ex: `/radoc-parser/src/test/resources/radoc2015.pdf`
