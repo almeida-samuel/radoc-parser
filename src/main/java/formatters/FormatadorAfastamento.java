@@ -7,11 +7,6 @@ public class FormatadorAfastamento extends FormatadorPadrao {
     }
 
     @Override
-    public String obtenhaTipoAtividade() {
-        return "afastamento";
-    }
-
-    @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "outras";
     }

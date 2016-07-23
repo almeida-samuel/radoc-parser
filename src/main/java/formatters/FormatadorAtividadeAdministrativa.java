@@ -7,11 +7,6 @@ public class FormatadorAtividadeAdministrativa extends FormatadorPadrao {
     }
 
     @Override
-    public String obtenhaTipoAtividade() {
-        return "atividadeAdministrativa";
-    }
-
-    @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "administrativas";
     }

@@ -7,11 +7,6 @@ public class FormatadorAtividadeDeOrientacao extends FormatadorPadrao {
     }
 
     @Override
-    public String obtenhaTipoAtividade() {
-        return "atividadeDeOrientacao";
-    }
-
-    @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "outras";
     }

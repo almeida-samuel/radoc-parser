@@ -7,11 +7,6 @@ public class FormatadorProduto extends FormatadorPadrao {
     }
 
     @Override
-    public String obtenhaTipoAtividade() {
-        return "produto";
-    }
-
-    @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "producaoIntelectual";
     }

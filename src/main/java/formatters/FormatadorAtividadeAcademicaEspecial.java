@@ -13,11 +13,6 @@ public class FormatadorAtividadeAcademicaEspecial extends FormatadorPadrao {
     }
 
     @Override
-    public String obtenhaTipoAtividade() {
-        return "atividadeAcademicaEspecial";
-    }
-
-    @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "outras";
     }
