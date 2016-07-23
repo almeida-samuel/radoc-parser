@@ -1,64 +1,64 @@
 ATIVIDADES DE ENSINO
-1, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO DE APLICAÇÕES  , 64, 2015, 2015
-2, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAMANUTENÇÃO DE SOFTWARE  , 64, 2015, 2015
-3, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAPROJETO FINAL DE CURSO 2  , 32, 2015, 2015
-4, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAPROJETO FINAL DE CURSO 2 NC  , 64, 2015, 2015
-5, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO 1  , 64, 2015, 2015
-6, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO 2  , 64, 2015, 2015
-7, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAPROJETO FINAL DE CURSO 2  , 32, 2015, 2015
+001001001000, 0064, 1, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO DE APLICAÇÕES  , 64, 2015, 2015
+001001001000, 0064, 2, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAMANUTENÇÃO DE SOFTWARE  , 64, 2015, 2015
+001001001000, 0032, 3, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAPROJETO FINAL DE CURSO 2  , 32, 2015, 2015
+001001001000, 0064, 4, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAPROJETO FINAL DE CURSO 2 NC  , 64, 2015, 2015
+001001001000, 0064, 5, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO 1  , 64, 2015, 2015
+001001001000, 0064, 6, UNIVERSIDADE FEDERAL DE GOIÁSSISTEMA DE CADASTRO DE ATIVIDADES DOCENTESDISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO 2  , 64, 2015, 2015
+001001001000, 0032, 7, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAPROJETO FINAL DE CURSO 2  , 32, 2015, 2015
 
 ATIVIDADES DE ORIENTAÇÃO
-1,  IMPLANTAÇÃO DE PROCESSOS DO COBIT EM PEQUENA OU MÉDIA EMPRESA   Aluno orientado em projeto de final de curso , 1, 03082015, 31122015
-2,  ESTUDO DE CASO: PLANEJAMENTO DE IMPLANTAÇÃO DE PROCESSOS ITIL EM UMA MICROEMPRESA BRASILEIRA   Aluno orientado em projeto de final de curso , 1, 01012015, 31072015
-3,  DEFINIÇÃO E MELHORIA DOS PROCESSOS DA FÁBRICA DE SOFTWARE DO INF - CATÁLOGO DE DIRETRIZES PARA A DEFINIÇÃO DE PROCESSOS   Aluno orientado em projeto de final de curso , 1, 01012015, 31072015
+005001013000, 0003, 1,  IMPLANTAÇÃO DE PROCESSOS DO COBIT EM PEQUENA OU MÉDIA EMPRESA   Aluno orientado em projeto de final de curso , 1, 03082015, 31122015
+005001013000, 0003, 2,  ESTUDO DE CASO: PLANEJAMENTO DE IMPLANTAÇÃO DE PROCESSOS ITIL EM UMA MICROEMPRESA BRASILEIRA   Aluno orientado em projeto de final de curso , 1, 01012015, 31072015
+005001013000, 0003, 3,  DEFINIÇÃO E MELHORIA DOS PROCESSOS DA FÁBRICA DE SOFTWARE DO INF - CATÁLOGO DE DIRETRIZES PARA A DEFINIÇÃO DE PROCESSOS   Aluno orientado em projeto de final de curso , 1, 01012015, 31072015
 
 ATIVIDADES EM PROJETOS
-1, Simpósio Brasileiro de Sistemas de Informação Participante de projeto de extensão/cultura cadastrado na PROEC , 100, 30062014, 15072015
-2, Museu de Ciência da UFG Participante de projeto de extensão/cultura cadastrado na PROEC , 80, 01012015, 10122015
-3, ESTRATÉGIAS E MÉTODOS PARA MELHORIA DE SOFTWARE Coordenador de projeto de pesquisa aprovado sem financiamento , 304, 04012010, 31122015
+003002005000, 0003, 1, Simpósio Brasileiro de Sistemas de Informação Participante de projeto de extensão/cultura cadastrado na PROEC , 100, 30062014, 15072015
+003002005000, 0003, 2, Museu de Ciência da UFG Participante de projeto de extensão/cultura cadastrado na PROEC , 80, 01012015, 10122015
+003001003000, 0025, 3, ESTRATÉGIAS E MÉTODOS PARA MELHORIA DE SOFTWARE Coordenador de projeto de pesquisa aprovado sem financiamento , 304, 04012010, 31122015
 
 ATIVIDADES DE EXTENSÃO
-1, Palestra ministrada: Uma certificação para a qualidade de produto de software brasileiro Participantes da XV JGES , 2, 26112015, 26112015
-2, Presidente da Trilha de BPM do SBSI Profissionais e estudantes da área de BPM , 20, 01032015, 01062015
-3, Palestra ministrada: Casos de certificação de produtos de software e preferência em licitações. A visão de um Avaliador CERTICS Participantes do III Workshop de Engenharia de Software da UFMS , 10, 07052015, 08052015
-4, SBSI 2015 Profissionais e estudantes de SI , 20, 26052015, 29052015
-5, Membro da Comissão Organizadora Jornada Goiana em Engenharia de Software , 20, 01032015, 31122015
+003002008003, 0003, 1,  Palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico - Evento regional ou local  Palestra ministrada: Uma certificação para a qualidade de produto de software brasileiro, 2, 26112015, 26112015
+003002011001, 0008, 2,  Promoção ou produção de eventos artísticos e científicos nacionais - Presidente  Presidente da Trilha de BPM do SBSI, 20, 01032015, 01062015
+003002008003, 0003, 3,  Palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico - Evento regional ou local  Palestra ministrada: Casos de certificação de produtos de software e preferência em licitações. A visão de um Avaliador CERTICS, 10, 07052015, 08052015
+003002011002, 0004, 4,  Promoção ou produção de eventos artísticos e científicos nacionais - Comissão organizadora  SBSI 2015, 20, 26052015, 29052015
+003002010002, 0003, 5,  Promoção ou produção de eventos artísticos e científicos regionais - Comissão organizadora  Membro da Comissão Organizadora, 20, 01032015, 31122015
 
 ATIVIDADES DE QUALIFICAÇÃO
-1, Participação em Congressos, Seminários, Encontros, Jornadas etc.  Jornada Goiana em Engenharia de Software - Goiânia-GO , 4, 26112015, 26112015
-2, Participação em Congressos, Seminários, Encontros, Jornadas etc.  III Workshop de Engenharia de Software da UFMS - Campo Grande-MS , 16, 07052015, 08052015
-3, Participação em Congressos, Seminários, Encontros, Jornadas etc.  Simpósio Brasileiro de Sistemas de Informação - Goiânia-GO , 24, 26052015, 29052015
+000000000000, 0000, 1, Participação em Congressos, Seminários, Encontros, Jornadas etc.  Jornada Goiana em Engenharia de Software - Goiânia-GO , 4, 26112015, 26112015
+000000000000, 0000, 2, Participação em Congressos, Seminários, Encontros, Jornadas etc.  III Workshop de Engenharia de Software da UFMS - Campo Grande-MS UNIVERSIDADE FEDERAL DE GOIÁS SISTEMA DE CADASTRO DE ATIVIDADES DOCENTES , 16, 07052015, 08052015
+000000000000, 0000, 3, Participação em Congressos, Seminários, Encontros, Jornadas etc.  Simpósio Brasileiro de Sistemas de Informação - Goiânia-GO , 24, 26052015, 29052015
 
 ATIVIDADES ACADÊMICAS ESPECIAIS
-1,  Membro de banca de concurso para docente efetivo na instituição  Presidente da Banca , 20, 01092015, 31122015
-2,  Membro de banca de concurso para docente efetivo na instituição  Presidente da Banca , 20, 01092015, 31122015
-3,  Membro de banca de defesa de tese de doutorado em outra instituição  CIN-UFPE , 30, 02032015, 12032015
-4,  Membro de banca de defesa de tese de doutorado em outra instituição  CIN-UFPE , 30, 02032015, 13032015
-5,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  PFC: DEFINIÇÃO E MELHORIA DOS PROCESSOS DA FÁBRICA DE SOFTWARE DO INF - CATÁLOGO DE DIRETRIZES PARA A DEFINIÇÃO DE PROCESSOS , 4, 01072015, 01072015
-6,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  PFC: ESTUDO DE CASO: PLANEJAMENTO DE IMPLANTAÇÃO DE PROCESSOS ITIL EM UMA MICROEMPRESA BRASILEIRA , 4, 01072015, 01072015
-7,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  PFC: CONTRIBUIÇÕES DO MODELO P-CMM PARA RESOLUÇÃO DE PROBLEMAS NO AMBIENTE DE DESENVOLVIMENTO DE SOFTWARE , 4, 16122014, 16122014
-8,  Membro de corpo de júri - Concursos nacionais  Membro do Comitê Julgador do Concurso de Teses e Dissertações em Qualidade de Software do Simpósio Brasileiro de Qualidade de Software , 20, 01032015, 01062015
+000000000000, 0000, 1,  Membro de banca de concurso para docente efetivo na instituição  Presidente da Banca , 20, 01092015, 31122015
+000000000000, 0000, 2,  Membro de banca de concurso para docente efetivo na instituição  Presidente da Banca , 20, 01092015, 31122015
+000000000000, 0000, 3,  Membro de banca de defesa de tese de doutorado em outra instituição  CIN-UFPE , 30, 02032015, 12032015
+000000000000, 0000, 4,  Membro de banca de defesa de tese de doutorado em outra instituição  CIN-UFPE , 30, 02032015, 13032015
+000000000000, 0000, 5,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas UNIVERSIDADE FEDERAL DE GOIÁS SISTEMA DE CADASTRO DE ATIVIDADES DOCENTES  PFC: DEFINIÇÃO E MELHORIA DOS PROCESSOS DA FÁBRICA DE SOFTWARE DO INF - CATÁLOGO DE DIRETRIZES PARA A DEFINIÇÃO DE PROCESSOS , 4, 01072015, 01072015
+000000000000, 0000, 6,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  PFC: ESTUDO DE CASO: PLANEJAMENTO DE IMPLANTAÇÃO DE PROCESSOS ITIL EM UMA MICROEMPRESA BRASILEIRA , 4, 01072015, 01072015
+000000000000, 0000, 7,  Membro de banca de defesa de monografia, projeto final de curso e outros tipos de bancas  PFC: CONTRIBUIÇÕES DO MODELO P-CMM PARA RESOLUÇÃO DE PROBLEMAS NO AMBIENTE DE DESENVOLVIMENTO DE SOFTWARE , 4, 16122014, 16122014
+000000000000, 0000, 8,  Membro de corpo de júri - Concursos nacionais  Membro do Comitê Julgador do Concurso de Teses e Dissertações em Qualidade de Software do Simpósio Brasileiro de Qualidade de Software , 20, 01032015, 01062015
 
 ATIVIDADES ADMINISTRATIVAS
-1, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Membro do Núcleo Docente Estruturante (NDE) do curso de Engenharia de Software , 150, 01012015, 31122015
-2, Membros da CPPD ou da Comissão de Avaliação Institucional ou da Comissão Própria de Avaliação ou da CAD  PRESIDENTE DA COMISSÃO DE AVALIAÇÃO DOCENTE - CAD - PARA TRATAR PRIORITARIAMENTE DOS PROCESSOS DE PROMOÇÃO À CLASSE D , 120, 01012015, 31122015
-3, Outras Atividades Administrativas e de Representação  PARTICIPAÇÕES EM REUNIÕES DO CD 2015 , 9, 01012015, 30042015
-4, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Coordenador da Fábrica de Software do INF , 150, 01012015, 31122015
-5, Outras Atividades Administrativas e de Representação  Atualização do currículo na plataforma Lattes , 8, 01012015, 31122015
-6, Outras Atividades Administrativas e de Representação  Preenchimento do Radoc , 8, 01012015, 30112015
-7, Outras Atividades Administrativas e de Representação  PARTICIPAÇÕES EM REUNIÕES DO PLANEJAMENTO PEDAGÓGICO DO INF EM 2015 , 9, 09022015, 12022015
-8, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Comissão de implantação do Museu de Ciência da UFG , 8, 18052015, 31122015
+000000000000, 0000, 1, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Membro do Núcleo Docente Estruturante (NDE) do curso de Engenharia de Software , 150, 01012015, 31122015
+000000000000, 0000, 2, Membros da CPPD ou da Comissão de Avaliação Institucional ou da Comissão Própria de Avaliação ou da CAD  PRESIDENTE DA COMISSÃO DE AVALIAÇÃO DOCENTE - CAD - PARA TRATAR PRIORITARIAMENTE DOS PROCESSOS DE PROMOÇÃO À CLASSE D , 120, 01012015, 31122015
+000000000000, 0000, 3, Outras Atividades Administrativas e de Representação  PARTICIPAÇÕES EM REUNIÕES DO CD 2015 , 9, 01012015, 30042015
+000000000000, 0000, 4, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Coordenador da Fábrica de Software do INF , 150, 01012015, 31122015
+000000000000, 0000, 5, Outras Atividades Administrativas e de Representação  Atualização do currículo na plataforma Lattes , 8, 01012015, 31122015
+000000000000, 0000, 6, Outras Atividades Administrativas e de Representação  Preenchimento do Radoc , 8, 01012015, 30112015
+000000000000, 0000, 7, Outras Atividades Administrativas e de Representação  PARTICIPAÇÕES EM REUNIÕES DO PLANEJAMENTO PEDAGÓGICO DO INF EM 2015 , 9, 09022015, 12022015
+000000000000, 0000, 8, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Comissão de implantação do Museu de Ciência da UFG , 8, 18052015, 31122015
 
 PRODUTOS
-1, Trabalho completo publicado em anais de congresso cientifico  A Brief Experience Report on Teaching Software Methods in a Software Engineering Undergraduate Course  , 8, 24092015, 24092015
-2, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos de relatos de experência para o SBSI 2015 , 8, 20052015, 20052015
-3, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para a trilha BPM do SBSI 2015 , 8, 20052015, 20052015
-4, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para a trilha de aplicações do SBSI 2015 , 8, 20052015, 20052015
-5, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para a trilha principal do SBSI 2015 , 8, 20052015, 20052015
-6, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para o WTDQS no SBQS 2015 , 8, 18082015, 18082015
-7, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de minicursos para o SBSI 2015 , 8, 20052015, 20052015
-8, Parecer de consultoria ad hoc em comitês de avaliação de concursos e editais de publicação de livros de editoras com corpo editorial  Membro do Comitê Julgador do Concurso de Teses e Dissertações em Qualidade de Software , 8, 18082015, 18082015
-9, Parecer de consultoria ad hoc para periódicos especializados com corpo editorial ou para instituições de fomento à pesquisa ou para livros de editoras com corpo editorial  Revisão de artigo para a Revista Multi-Science Journal do IF Goiano na edição Agosto de 2015 - ISSN 2359-6902 , 8, 12082015, 12082015
-10, Livro publicado com selo de editora que possua corpo editorial  Sinfonia: Orquestrando Processos de Negócio - Uma abordagem colaborativa e flexível para modelagem e execução de processos de negócio , 8, 23012015, 23012015
+000000000000, 0000, 1, Trabalho completo publicado em anais de congresso cientifico  A Brief Experience Report on Teaching Software Methods in a Software Engineering Undergraduate Course  , 8, 24092015, 24092015
+000000000000, 0000, 2, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos de relatos de experência para o SBSI 2015 , 8, 20052015, 20052015
+000000000000, 0000, 3, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT) UNIVERSIDADE FEDERAL DE GOIÁS SISTEMA DE CADASTRO DE ATIVIDADES DOCENTES  Avaliação e seleção de artigos para a trilha BPM do SBSI 2015 , 8, 20052015, 20052015
+000000000000, 0000, 4, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para a trilha de aplicações do SBSI 2015 , 8, 20052015, 20052015
+000000000000, 0000, 5, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para a trilha principal do SBSI 2015 , 8, 20052015, 20052015
+000000000000, 0000, 6, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de artigos para o WTDQS no SBQS 2015 , 8, 18082015, 18082015
+000000000000, 0000, 7, Parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (ART) ou registro de resp. técnica (RRT)  Avaliação e seleção de minicursos para o SBSI 2015 , 8, 20052015, 20052015
+000000000000, 0000, 8, Parecer de consultoria ad hoc em comitês de avaliação de concursos e editais de publicação de livros de editoras com corpo editorial  Membro do Comitê Julgador do Concurso de Teses e Dissertações em Qualidade de Software , 8, 18082015, 18082015
+000000000000, 0000, 9, Parecer de consultoria ad hoc para periódicos especializados com corpo editorial ou para instituições de fomento à pesquisa ou para livros de editoras com corpo editorial  Revisão de artigo para a Revista Multi-Science Journal do IF Goiano na edição Agosto de 2015 - ISSN 2359-6902 , 8, 12082015, 12082015
+000000000000, 0000, 10, Livro publicado com selo de editora que possua corpo editorial  Sinfonia: Orquestrando Processos de Negócio - Uma abordagem colaborativa e flexível para modelagem e execução de processos de negócio , 8, 23012015, 23012015
 
 AFASTAMENTOS

@@ -1,5 +1,7 @@
 package formatters;
 
+import java.util.regex.Matcher;
+
 public class FormatadorAfastamento extends FormatadorPadrao {
 
     public FormatadorAfastamento(String pathResolucao) {
@@ -9,5 +11,10 @@ public class FormatadorAfastamento extends FormatadorPadrao {
     @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "outras";
+    }
+
+    @Override
+    public String obtenhaPontuacao(Matcher matcher) {
+        return super.obtenhaPontuacaoBaseadaEmAnos(matcher);
     }
 }

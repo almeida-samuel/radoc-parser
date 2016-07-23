@@ -1,5 +1,7 @@
 package formatters;
 
+import java.util.regex.Matcher;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -13,6 +15,11 @@ public class FormatadorAtividadeAdministrativa extends FormatadorPadrao {
     @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "administrativas";
+    }
+
+    @Override
+    public String obtenhaPontuacao(Matcher matcher) {
+        return super.obtenhaPontuacaoBaseadaEmAnos(matcher);
     }
 
     @Override

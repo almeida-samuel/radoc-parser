@@ -6,10 +6,7 @@ import utils.MatcherUtils;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
@@ -191,6 +188,40 @@ public abstract class FormatadorPadrao {
         }
 
         return codGrupoPontuacao;
+    }
+
+    public static int obtenhaDiferencaEmMeses(Date comeco, Date fim) {
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTime(comeco);
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(fim);
+
+        int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+        int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+        return diffMonth;
+    }
+
+    public String obtenhaPontuacaoBaseadaEmAnos(Matcher matcher) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String pontuacaoString = obtenhaCampo(matcher, "pontuacao");
+
+        if(pontuacaoString.equals("")) return "0000";
+
+        Integer pontuacao = Integer.valueOf(pontuacaoString);
+
+        try {
+            Date dataInicio = simpleDateFormat.parse(matcher.group(4));
+            Date dataFim = simpleDateFormat.parse(matcher.group(5));
+            Integer anos = obtenhaDiferencaEmMeses(dataInicio, dataFim) / 12;
+            if(anos == 0){
+                anos = 1;
+            }
+            return String.format("%04d", anos * pontuacao );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return "0000";
     }
 
 }
