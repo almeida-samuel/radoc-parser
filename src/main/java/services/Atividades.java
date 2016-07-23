@@ -228,7 +228,7 @@ public class Atividades {
         substituicoes.put("[\\n\\r\\t]+", " ");
 
         String regexAtividadesIndividuais = "Tabela:.+?Data de término:.+?\\d{2}\\/\\d{2}\\/\\d{4}";
-        String regexAtividadeUnica = ".+?Processo:(.+?)Descrição.+?(.+?)Motivo:.+?CHA:(.+?)Data de início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data de término:.?+(\\d{2}\\/\\d{2}\\/\\d{4})";
+        String regexAtividadeUnica = ".+?Processo:.+?Descrição.+?(.+?)Motivo:(.+)?CHA:(.+?)Data de início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data de término:.?+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
         FormatadorAfastamento formatadorAfastamento = new FormatadorAfastamento(this.resolucaoPath);
         afastamentos = formatadorAfastamento.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
