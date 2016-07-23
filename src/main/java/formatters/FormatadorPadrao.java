@@ -161,7 +161,7 @@ public abstract class FormatadorPadrao {
         if (codPontuacao.equals("")) {
             return "0000";
         }
-        return codPontuacao;
+        return String.format("%04d", Integer.valueOf(codPontuacao));
     }
 
     public ResolucaoParser getResolucaoParser() {
