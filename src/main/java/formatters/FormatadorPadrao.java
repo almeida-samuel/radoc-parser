@@ -160,7 +160,11 @@ public abstract class FormatadorPadrao {
      * @return A pontuação.
      */
     public String obtenhaPontuacao(Matcher matcher) {
-        return obtenhaCampo(matcher, "pontuacao");
+        String codPontuacao = obtenhaCampo(matcher, "pontuacao");
+        if (codPontuacao.equals("")) {
+            return "0000";
+        }
+        return codPontuacao;
     }
 
     /**
