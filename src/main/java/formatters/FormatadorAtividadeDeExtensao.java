@@ -74,4 +74,9 @@ public class FormatadorAtividadeDeExtensao extends FormatadorPadrao {
     private String trateAtividadeDeExtensao(Matcher matcher){
         return matcher.group(1) + "\n" + matcher.group(5) + "\n" + matcher.group(2) + "\n" + matcher.group(3) + "\n" + matcher.group(4);
     }
+
+    @Override
+    public String obtenhaPontuacao(Matcher matcher) {
+        return super.obtenhaPontuacaoBaseadaEmAnos(matcher);
+    }
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 
+import java.util.regex.Matcher;
+
 public class FormatadorAtividadeDeQualificacao extends FormatadorPadrao {
 
     public FormatadorAtividadeDeQualificacao(String pathResolucao) {
@@ -13,6 +15,11 @@ public class FormatadorAtividadeDeQualificacao extends FormatadorPadrao {
     @Override
     public String obtenhaTipoAtividadeResolucao() {
         return "outras";
+    }
+
+    @Override
+    public String obtenhaPontuacao(Matcher matcher) {
+        return super.obtenhaPontuacaoBaseadaEmAnos(matcher);
     }
 
     @Override

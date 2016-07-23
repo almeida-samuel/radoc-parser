@@ -74,4 +74,9 @@ public class FormatadorAtividadeAcademicaEspecial extends FormatadorPadrao {
 
         return codGrupoPontuacao;
     }
+
+    @Override
+    public String obtenhaPontuacao(Matcher matcher) {
+        return super.obtenhaPontuacaoBaseadaEmAnos(matcher);
+    }
 }
