@@ -181,7 +181,7 @@ public abstract class FormatadorPadrao {
         HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());
 
         for(String k : mapaAtividade.keySet()) {
-            if(k.equals(key) || k.contains(key)) {
+            if((k.equals(key) || k.contains(key)) && !key.equals("")) {
                 codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get(campo));
                 break;
             }

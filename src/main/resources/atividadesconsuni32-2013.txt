@@ -204,6 +204,7 @@ V-2;10;coordenador de projeto institucional de intercâmbio internacional;10
 V-3;1;docente regularmente matriculado em curso de doutorado com relatórios de pós-graduação aprovados (pontuação por mês de curso);12
 V-3;2;estágio pós-doutoral ou estágio sênior (pontuação por mês de estágio);12
 V-3;3;licença capacitação (artigo 87, lei n.8112) (pontuação por mês de licença);12
+V-3;3;docente em licença para capacitação (artigo 87, lei n.8112) (pontuação por mês de licença);12
 V-3;4;curso de aperfeiçoamento realizado com carga horária superior a 40 horas;3
 V-3;5;curso de aperfeiçoamento realizado com carga horária inferior a 40 horas;1
 V-3;6;participação em congressos, seminários, encontros, jornadas etc. (total máximo a ser considerado neste item são 3 pontos);1
