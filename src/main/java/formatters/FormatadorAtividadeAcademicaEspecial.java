@@ -4,6 +4,7 @@ import utils.MatcherUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 public class FormatadorAtividadeAcademicaEspecial extends FormatadorPadrao {
@@ -54,5 +55,23 @@ public class FormatadorAtividadeAcademicaEspecial extends FormatadorPadrao {
      */
     private String trateAtividadeAcademicaEspecial(Matcher matcher) {
         return matcher.group(1) + "\n" + matcher.group(5) + "\n" + matcher.group(2) + "\n" + matcher.group(3) + "\n" + matcher.group(4);
+    }
+
+    @Override
+    public String obtenhaCampo(Matcher matcher, String campo) {
+        HashMap<String, Map> anexoIIResolucao = getResolucaoParser().obtenhaAtividadesResolucao();
+        String key = matcher.group(1).toLowerCase().trim();
+
+        String codGrupoPontuacao = "";
+        HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());
+
+        for(String k : mapaAtividade.keySet()) {
+            if(k.equals(key) || k.contains(key)) {
+                codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get(campo));
+                break;
+            }
+        }
+
+        return codGrupoPontuacao;
     }
 }
