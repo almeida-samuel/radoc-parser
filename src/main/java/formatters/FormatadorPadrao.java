@@ -78,6 +78,7 @@ public abstract class FormatadorPadrao {
         String linhaDeRegistroPadrao = "";
 
         linhaDeRegistroPadrao += obtenhaCodGrupoPontuacao(matcher) + ", ";
+        linhaDeRegistroPadrao += obtenhaPontuacao(matcher) + ", ";
         linhaDeRegistroPadrao += (sequencial+1) + ", ";
         linhaDeRegistroPadrao += matcher.group(1) + " " + matcher.group(2) + ", ";
         linhaDeRegistroPadrao += trataCargaHoraria(matcher) + ", ";
@@ -139,28 +140,12 @@ public abstract class FormatadorPadrao {
      * @return O codGrupoPontuacao.
      */
     private String obtenhaCodGrupoPontuacao(Matcher matcher) {
-        HashMap<String, Map> anexoIIResolucao = this.resolucaoParser.obtenhaAtividadesResolucao();
-        String key = matcher.group(2).toLowerCase().trim();
-
-        String codGrupoPontuacao = "000000000000";
-        HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());
-
-        for(String k : mapaAtividade.keySet()) {
-            if(k.equals(key) || k.contains(key)) {
-                codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get("codGrupoPontuacao"));
-                break;
-            }
+        String codGrupoPontuacao = obtenhaCampo(matcher, "codGrupoPontuacao");
+        if (codGrupoPontuacao.equals("")) {
+            return "000000000000";
         }
-
         return codGrupoPontuacao;
     }
-
-    /**
-     * Método que será implementado pelas classes que herdarem de FormatadorPadrao.
-     * <p>Recupera o tipo de atividade tratada.</p>
-     * @return O tipo de atividade tratada.
-     */
-    public abstract String obtenhaTipoAtividade();
 
     /**
      * Método que será implementado pelas classes que herdarem de FormatadorPadrao.
@@ -168,5 +153,36 @@ public abstract class FormatadorPadrao {
      * @return O tipo de atividade da resolução tratada.
      */
     public abstract String obtenhaTipoAtividadeResolucao();
+
+    /**
+     * Calcula a pontuação do registro baseado em suas datas.
+     * @param matcher O matcher para a atividade.
+     * @return A pontuação.
+     */
+    public String obtenhaPontuacao(Matcher matcher) {
+        return obtenhaCampo(matcher, "pontuacao");
+    }
+
+    /**
+     * Calcula a pontuação do registro baseado em suas datas.
+     * @param matcher O matcher para a atividade.
+     * @return A pontuação.
+     */
+    public String obtenhaCampo(Matcher matcher, String campo) {
+        HashMap<String, Map> anexoIIResolucao = this.resolucaoParser.obtenhaAtividadesResolucao();
+        String key = matcher.group(2).toLowerCase().trim();
+
+        String codGrupoPontuacao = "";
+        HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());
+
+        for(String k : mapaAtividade.keySet()) {
+            if(k.equals(key) || k.contains(key)) {
+                codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get(campo));
+                break;
+            }
+        }
+
+        return codGrupoPontuacao;
+    }
 
 }
