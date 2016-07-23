@@ -1,8 +1,8 @@
 package services;
 
+import formatters.*;
 import utils.FileUtils;
 import utils.MatcherUtils;
-import utils.RegistrosUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,13 +17,17 @@ public class Atividades {
     private final String REGEX_ATIVIDADES_DE_QUALIFICACAO = "Atividades de qualificação[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades acadêmicas especiais";
     private final String REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS = "Atividades acadêmicas especiais[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades administrativas";
     private final String REGEX_ATIVIDADES_ADMINISTRATIVAS = "Atividades administrativas[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Produtos";
+    private final String REGEX_PRODUTOS = "Produtos[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
+    private final String REGEX_AFASTAMENTOS = "Afastamento[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades de ensino";
 
     private String conteudoArquivo;
     private File arquivoFonte;
+    private String resolucaoPath;
 
-    public Atividades(String conteudoArquivo, File arquivoFonte) {
+    public Atividades(String conteudoArquivo, File arquivoFonte, String resolucaoPath) {
         this.conteudoArquivo = conteudoArquivo;
         this.arquivoFonte = arquivoFonte;
+        this.resolucaoPath = resolucaoPath;
     }
 
     /**
@@ -41,7 +45,8 @@ public class Atividades {
         substituicoes.put("\n+", "");
         substituicoes.put("\r+", "");
 
-        atividadesDeEnsino = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        FormatadorAtividadeDeEnsino formatadorAtividadeDeEnsino = new FormatadorAtividadeDeEnsino(this.resolucaoPath);
+        atividadesDeEnsino = formatadorAtividadeDeEnsino.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesDeEnsino;
     }
@@ -63,7 +68,8 @@ public class Atividades {
         String regexAtividadesIndividuais = "Título do trabalho:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d+\\/\\d+\\/\\d+";
         String regexAtividadeUnica = "Título do trabalho:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Tabela:([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Orientando:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d+\\/\\d+\\/\\d+)[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+(\\d+\\/\\d+\\/\\d+)";
 
-        atividadesDeOrientacao = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        FormatadorAtividadeDeOrientacao formatadorAtividadesDeOrientacao = new FormatadorAtividadeDeOrientacao(this.resolucaoPath);
+        atividadesDeOrientacao = formatadorAtividadesDeOrientacao.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesDeOrientacao;
     }
@@ -72,7 +78,7 @@ public class Atividades {
      * {@inheritDoc}
      */
     public ArrayList<String> obtenhaAtividadesEmProjetos() {
-        ArrayList<String> atividadesEmProjetos;
+        ArrayList<String> atividadesDeProjeto;
         String conteudoDoArquivo = FileUtils.obtenhaConteudoArquivo(conteudoArquivo, arquivoFonte);
         Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_ATIVIDADES_EM_PROJETOS, conteudoDoArquivo);
 
@@ -85,16 +91,18 @@ public class Atividades {
         String regexAtividadesIndividuais = "Título do Projeto:.*?Data Término:\\s*[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}";
         String regexAtividadeUnica = "Título do Projeto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Unidade Responsável:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data Início:\\s+(\\d+\\/\\d+\\/\\d+)\\s+Data Término:\\s+(\\d+\\/\\d+\\/\\d+)";
 
-        atividadesEmProjetos = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
-        return atividadesEmProjetos;
+        FormatadorAtividadeDeProjeto formatadorAtividadesDeProjeto = new FormatadorAtividadeDeProjeto(this.resolucaoPath);
+        atividadesDeProjeto = formatadorAtividadesDeProjeto.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+
+        return atividadesDeProjeto;
     }
 
     /**
      * {@inheritDoc}
      */
     public ArrayList<String> obtenhaAtividadesDeExtensao() {
-        ArrayList<String> atividadesDeOrientacao = new ArrayList<String>();
+        ArrayList<String> atividadesDeExtensao;
         String conteudoDoArquivo = FileUtils.obtenhaConteudoArquivo(conteudoArquivo, arquivoFonte);
         Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_ATIVIDADES_DE_EXTENSAO, conteudoDoArquivo);
 
@@ -104,30 +112,14 @@ public class Atividades {
         substituicoes.put("[\\n\\r\\t]+", " ");
         substituicoes.put("[\\n\\r\\t]+", " ");
 
-        if(matcher.find()) {
-            conteudoDoArquivo = matcher.group();
-            conteudoDoArquivo = RegistrosUtils.substituiOcorrencias(conteudoDoArquivo, substituicoes);
+        String regexAtividadesIndividuais = "Tabela:.+?(?=Tabela)";
+        String regexAtividadeUnica = "Tabela:.+?CHA:.+?(\\d+).+?Data início:.+?(\\d+\\/\\d+\\/\\d+).+?Data término:.+?(\\d+\\/\\d+\\/\\d+).+?Descrição da atividade:.+?(.+).+?Descrição da clientela:.+?(.+)";
 
-            String regexAtividadesIndividuais = "Tabela:.+?(?=Tabela)";
-            Matcher matcherAtividadesIndividuais = MatcherUtils.obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-            int contadorAtividadesIndividuais = 0;
+        FormatadorAtividadeDeExtensao formatadorAtividadesDeExtensao = new FormatadorAtividadeDeExtensao(this.resolucaoPath);
+        atividadesDeExtensao = formatadorAtividadesDeExtensao.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
-            while(matcherAtividadesIndividuais.find()) {
-                Matcher matcherAtividade;
-                String regexAtividadeUnica = "Tabela:.+?CHA:.+?(\\d+).+?Data início:.+?(\\d+\\/\\d+\\/\\d+).+?Data término:.+?(\\d+\\/\\d+\\/\\d+).+?Descrição da atividade:.+?(.+).+?Descrição da clientela:.+?(.+)";
-                matcherAtividade = MatcherUtils.obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-                while(matcherAtividade.find()) {
-                    String atividadeTratada = trateAtividadeDeExtensao(matcherAtividade);
-                    Matcher matcherAtividadeTratada = MatcherUtils.obtenhaMatcher("(.+?)\\n(.+?)\\n(.+?)\\n(.+)\\n(.+)",atividadeTratada);
-                    matcherAtividadeTratada.find();
-                    atividadesDeOrientacao.add(RegistrosUtils.obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividadeTratada));
-                }
 
-                contadorAtividadesIndividuais++;
-            }
-        }
-
-        return atividadesDeOrientacao;
+        return atividadesDeExtensao;
     }
 
     /**
@@ -144,10 +136,11 @@ public class Atividades {
         substituicoes.put("[\\n\\r\\t]+", " ");
         substituicoes.put("[\\n\\r\\t]+", " ");
 
-        String regexAtividadesQualificacaoIndividuais = "Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data de término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
-        String regexAtividadesQualificacaoUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data de início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data de término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
+        String regexAtividadesIndividuais = "Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data de término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
+        String regexAtividadeUnica = "Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)CHA:\\s+(\\d+)\\s+Data de início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data de término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-        atividadesDeQualificacao = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesQualificacaoIndividuais, regexAtividadesQualificacaoUnica, substituicoes);
+        FormatadorAtividadeDeQualificacao formatadorAtividadesDeQualificacao = new FormatadorAtividadeDeQualificacao(this.resolucaoPath);
+        atividadesDeQualificacao = formatadorAtividadesDeQualificacao.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesDeQualificacao;
     }
@@ -156,7 +149,7 @@ public class Atividades {
      * {@inheritDoc}
      */
     public ArrayList<String> obtenhaAtividadesAcademicasEspeciais() {
-        ArrayList<String> atividadesAcademicasEspeciais = new ArrayList<String>();
+        ArrayList<String> atividadesAcademicasEspeciais;
         String conteudoDoArquivo = FileUtils.obtenhaConteudoArquivo(conteudoArquivo, arquivoFonte);
         Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_ATIVIDADES_ACADEMICAS_ESPECIAIS, conteudoDoArquivo);
 
@@ -166,28 +159,11 @@ public class Atividades {
         substituicoes.put("[\\n\\r\\t]+", " ");
         substituicoes.put("[\\n\\r\\t]+", " ");
 
-        if(matcher.find()) {
-            conteudoDoArquivo = matcher.group();
-            conteudoDoArquivo = RegistrosUtils.substituiOcorrencias(conteudoDoArquivo, substituicoes);
+        String regexAtividadesIndividuais = "Tabela:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bTabela\\b|$)";
+        String regexAtividadeUnica = "Tabela:(.+?)CHA:.+?(\\d+).+?Data início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data término:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Descrição Complementar:.+?(.+?)Descrição da Clientela:.+";
 
-            String regexAtividadesIndividuais = "Tabela:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bTabela\\b|$)";
-            Matcher matcherAtividadesIndividuais = MatcherUtils.obtenhaMatcher(regexAtividadesIndividuais, conteudoDoArquivo);
-            int contadorAtividadesIndividuais = 0;
-
-            while(matcherAtividadesIndividuais.find()) {
-                Matcher matcherAtividade;
-                String regexAtividadeUnica = "Tabela:(.+?)CHA:.+?(\\d+).+?Data início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data término:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Descrição Complementar:.+?(.+?)Descrição da Clientela:.+";
-                matcherAtividade = MatcherUtils.obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
-                while(matcherAtividade.find()) {
-                    String atividadeTratada = trateAtividadeAcademicaEspecial(matcherAtividade);
-                    Matcher matcherAtividadeTratada = MatcherUtils.obtenhaMatcher("(.+?)\\n(.+?)\\n(.+?)\\n(.+)\\n(.+)",atividadeTratada);
-                    matcherAtividadeTratada.find();
-                    atividadesAcademicasEspeciais.add(RegistrosUtils.obtenhaLinhaDeRegistroPadronizado(contadorAtividadesIndividuais, matcherAtividadeTratada));
-                }
-
-                contadorAtividadesIndividuais++;
-            }
-        }
+        FormatadorAtividadeAcademicaEspecial formatadorAtividadesAcademicasEspeciais = new FormatadorAtividadeAcademicaEspecial(this.resolucaoPath);
+        atividadesAcademicasEspeciais = formatadorAtividadesAcademicasEspeciais.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
         return atividadesAcademicasEspeciais;
     }
@@ -196,7 +172,7 @@ public class Atividades {
      * {@inheritDoc}
      */
     public ArrayList<String> obtenhaAtividadesAdministrativas() {
-        ArrayList<String> atividadesAdministrativas;
+        ArrayList<String> atividadeAdministrativa;
         String conteudoDoArquivo = FileUtils.obtenhaConteudoArquivo(conteudoArquivo, arquivoFonte);
         Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_ATIVIDADES_ADMINISTRATIVAS, conteudoDoArquivo);
 
@@ -209,27 +185,58 @@ public class Atividades {
         String regexAtividadesIndividuais = "\\s+Tabela:\\s+[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Data término:\\s+\\d{2}\\/\\d{2}\\/\\d{4}";
         String regexAtividadeUnica = "\\s+Tabela:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Descrição:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Órgão emissor[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?CHA:\\s+(\\d+)\\s+Data início:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})\\s+Data término:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})";
 
-        atividadesAdministrativas = RegistrosUtils.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+        FormatadorAtividadeAdministrativa formatadorAtividadesAdministrativa = new FormatadorAtividadeAdministrativa(this.resolucaoPath);
+        atividadeAdministrativa = formatadorAtividadesAdministrativa.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
 
-        return atividadesAdministrativas;
+        return atividadeAdministrativa;
     }
 
     /**
-     *Trata as atividades de extensão ao padrão de grupos
-     * @param matcher Matcher para a atividade.
-     * @return Atividade tratada
+     * {@inheritDoc}
      */
-    private String trateAtividadeDeExtensao(Matcher matcher){
-        return matcher.group(4) + "\n" + matcher.group(5) + "\n" + matcher.group(1) + "\n" + matcher.group(2) + "\n" + matcher.group(3);
+    public ArrayList<String> obtenhaProdutos() {
+        ArrayList<String> produtos;
+        String conteudoDoArquivo = FileUtils.obtenhaConteudoArquivo(conteudoArquivo, arquivoFonte);
+        Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_PRODUTOS, conteudoDoArquivo);
+
+        HashMap<String, String> substituicoes = new HashMap<String, String>();
+        substituicoes.put("Produtos", "");
+        substituicoes.put("[\\n\\r\\t]+", " ");
+        substituicoes.put("[\\n\\r\\t]+", " ");
+
+        String regexAtividadesIndividuais = "Descrição do produto:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Editora:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bDescrição\\b|$)";
+        String regexAtividadeUnica = "Descrição do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Título do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Autoria[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?()Data:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})()";
+
+        FormatadorProduto formatadorProduto = new FormatadorProduto(this.resolucaoPath);
+        produtos = formatadorProduto.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+
+        return produtos;
     }
 
     /**
-     * Rearranjo das atividadades acadêmicas especiais para a adequação ao formato
-     * definido pelo método obtenhaLinhaDeRegistroPadronizado.
-     * @param matcher Matcher para a atividade.
-     * @return Rearranjo das atividades;
+     * {@inheritDoc}
      */
-    private String trateAtividadeAcademicaEspecial(Matcher matcher) {
-        return matcher.group(1) + "\n" + matcher.group(5) + "\n" + matcher.group(2) + "\n" + matcher.group(3) + "\n" + matcher.group(4);
+    public ArrayList<String> obtenhaAfastamentos() {
+        ArrayList<String> afastamentos;
+        String conteudoDoArquivo = FileUtils.obtenhaConteudoArquivo(conteudoArquivo, arquivoFonte);
+        Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_AFASTAMENTOS, conteudoDoArquivo);
+
+        HashMap<String, String> substituicoes = new HashMap<String, String>();
+        substituicoes.put("Afastamento", "");
+        substituicoes.put("Atividades de ensino", "");
+        substituicoes.put("[\\n\\r\\t]+", " ");
+        substituicoes.put("[\\n\\r\\t]+", " ");
+
+        String regexAtividadesIndividuais = "Tabela:.+?Data de término:.+?\\d{2}\\/\\d{2}\\/\\d{4}";
+        String regexAtividadeUnica = ".+?Processo:(.+?)Descrição.+?(.+?)Motivo:.+?CHA:(.+?)Data de início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data de término:.?+(\\d{2}\\/\\d{2}\\/\\d{4})";
+
+        FormatadorAfastamento formatadorAfastamento = new FormatadorAfastamento(this.resolucaoPath);
+        afastamentos = formatadorAfastamento.obtenhaRegistros(matcher, regexAtividadesIndividuais, regexAtividadeUnica, substituicoes);
+
+        return afastamentos;
     }
+
+
+
+
 }

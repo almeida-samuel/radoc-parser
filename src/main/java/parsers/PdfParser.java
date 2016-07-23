@@ -3,16 +3,13 @@ import interfaces.RadocParser;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.Matcher;
 
 import services.Atividades;
 import utils.FileUtils;
-import utils.MatcherUtils;
-import utils.RegistrosUtils;
 
 public class PdfParser implements RadocParser {
-	private final String REGEX_PRODUTOS = "Produtos[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+";
-	private final String REGEX_AFASTAMENTOS = "Afastamento[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Atividades de ensino";
+
+	private static final String RESOLUCAO_PATH = "src/main/resources/atividadesconsuni32-2013.txt";
 
 	private File arquivoFonte;
 	private String conteudoArquivo;
@@ -20,7 +17,7 @@ public class PdfParser implements RadocParser {
 	public PdfParser(File arquivoFonte) {
 		this.arquivoFonte = arquivoFonte;
 		this.conteudoArquivo = "";
-		this.atividades = new Atividades(conteudoArquivo, arquivoFonte);
+		this.atividades = new Atividades(conteudoArquivo, arquivoFonte, RESOLUCAO_PATH);
 	}
 
 	private Atividades atividades;
@@ -44,48 +41,11 @@ public class PdfParser implements RadocParser {
 	public ArrayList<String> obtenhaAtividadesAdministrativas() {
 		return atividades.obtenhaAtividadesAdministrativas();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public ArrayList<String> obtenhaProdutos() {
-		ArrayList<String> produtos;
-		String conteudoDoArquivo = obtenhaConteudoArquivo();
-		Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_PRODUTOS, conteudoDoArquivo);
-
-		HashMap<String, String> substituicoes = new HashMap<String, String>();
-		substituicoes.put("Produtos", "");
-		substituicoes.put("[\\n\\r\\t]+", " ");
-		substituicoes.put("[\\n\\r\\t]+", " ");
-
-		String regexProdutoIndividual = "Descrição do produto:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?Editora:[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?(?=\\bDescrição\\b|$)";
-		String regexProdutoUnico = "Descrição do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Título do produto:\\s+([\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?)Autoria[\\s\\d\\p{L}\\/\\-\\.\\_\\:\\,\\>\\=\\<\\(\\'\\\"\\@\\!\\)]+?()Data:\\s+(\\d{2}\\/\\d{2}\\/\\d{4})()";
-
-		produtos = RegistrosUtils.obtenhaRegistros(matcher, regexProdutoIndividual, regexProdutoUnico, substituicoes);
-
-		return produtos;
+		return atividades.obtenhaProdutos();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public ArrayList<String> obtenhaAfastamentos() {
-		ArrayList<String> afastamentos;
-		String conteudoDoArquivo = obtenhaConteudoArquivo();
-		Matcher matcher = MatcherUtils.obtenhaMatcher(REGEX_AFASTAMENTOS, conteudoDoArquivo);
-
-		HashMap<String, String> substituicoes = new HashMap<String, String>();
-		substituicoes.put("Afastamento", "");
-		substituicoes.put("Atividades de ensino", "");
-		substituicoes.put("[\\n\\r\\t]+", " ");
-		substituicoes.put("[\\n\\r\\t]+", " ");
-
-		String regexAfastamentoIndividual = "Tabela:.+?Data de término:.+?\\d{2}\\/\\d{2}\\/\\d{4}";
-		String regexAfastamentoUnico = ".+?Processo:(.+?)Descrição.+?(.+?)Motivo:.+?CHA:(.+?)Data de início:.+?(\\d{2}\\/\\d{2}\\/\\d{4}).+?Data de término:.?+(\\d{2}\\/\\d{2}\\/\\d{4})";
-
-		afastamentos = RegistrosUtils.obtenhaRegistros(matcher, regexAfastamentoIndividual, regexAfastamentoUnico, substituicoes);
-
-		return afastamentos;
+		return atividades.obtenhaAfastamentos();
 	}
 
 	/**

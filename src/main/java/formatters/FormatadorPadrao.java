@@ -1,6 +1,7 @@
-package utils;
+package formatters;
 
 import parsers.ResolucaoParser;
+import utils.MatcherUtils;
 
 import java.io.File;
 import java.text.ParseException;
@@ -12,12 +13,23 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
-public class RegistrosUtils {
+public abstract class FormatadorPadrao {
 
-    private static final String PATH_RESOLUCAO_TXT = "src/main/resources//atividadesconsuni32-2013.txt";
-    private static ResolucaoParser resolucaoParser = new ResolucaoParser(new File(PATH_RESOLUCAO_TXT));
+    private ResolucaoParser resolucaoParser;
 
-    public static ArrayList<String> obtenhaRegistros(Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
+    public FormatadorPadrao(String pathResolucao) {
+        this.resolucaoParser = new ResolucaoParser(new File(pathResolucao));
+    }
+
+    /**
+     *
+     * @param matcherGeral
+     * @param regexRegistrosIndividuais
+     * @param regexRegistroUnico
+     * @param substituicoes
+     * @return
+     */
+    public ArrayList<String> obtenhaRegistros(Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
         ArrayList<String> registros = new ArrayList<String>();
 
         if(matcherGeral.find()) {
@@ -42,7 +54,6 @@ public class RegistrosUtils {
         return registros;
     }
 
-
     /**
      * Substitui as ocorrências de determinada regex (key) por um dado valor (value)
      * em um determinado conteúdo alvo.
@@ -50,13 +61,12 @@ public class RegistrosUtils {
      * @param substituicoes Map, em que: key= regex que se deseja substituir, value= valor da substituição.
      * @return O conteúdo alterado, já com as substituições feitas.
      */
-    public static String substituiOcorrencias(String conteudo, HashMap<String, String> substituicoes) {
+    public String substituiOcorrencias(String conteudo, HashMap<String, String> substituicoes) {
         for(String key : substituicoes.keySet()) {
             conteudo = conteudo.replaceAll(key, substituicoes.get(key));
         }
         return conteudo;
     }
-
 
     /**
      * Obtém a linha padronizada de um registro.
@@ -64,7 +74,7 @@ public class RegistrosUtils {
      * @param matcher Matcher para a atividade.
      * @return Linha padronizada de um registro.
      */
-    public static String obtenhaLinhaDeRegistroPadronizado(int sequencial, Matcher matcher) {
+    public String obtenhaLinhaDeRegistroPadronizado(int sequencial, Matcher matcher) {
         String linhaDeRegistroPadrao = "";
 
         linhaDeRegistroPadrao += obtenhaCodGrupoPontuacao(matcher) + ", ";
@@ -128,23 +138,35 @@ public class RegistrosUtils {
      * @param matcher Matcher para a atividade.
      * @return O codGrupoPontuacao.
      */
-    private static String obtenhaCodGrupoPontuacao(Matcher matcher) {
-        HashMap<String, Map> anexoIIResolucao = resolucaoParser.obtenhaAtividadesResolucao();
+    private String obtenhaCodGrupoPontuacao(Matcher matcher) {
+        HashMap<String, Map> anexoIIResolucao = this.resolucaoParser.obtenhaAtividadesResolucao();
         String key = matcher.group(2).toLowerCase().trim();
 
         String codGrupoPontuacao = "000000000000";
-        for(String atividade : anexoIIResolucao.keySet()) {
-            HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(atividade);
+        HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());
 
-            for(String k : mapaAtividade.keySet()) {
-                if(k.equals(key) || k.contains(key)) {
-                    codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get("codGrupoPontuacao"));
-                    break;
-                }
+        for(String k : mapaAtividade.keySet()) {
+            if(k.equals(key) || k.contains(key)) {
+                codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get("codGrupoPontuacao"));
+                break;
             }
-
-            if(!codGrupoPontuacao.equals("000000000000")) break;
         }
+
         return codGrupoPontuacao;
     }
+
+    /**
+     * Método que será implementado pelas classes que herdarem de FormatadorPadrao.
+     * <p>Recupera o tipo de atividade tratada.</p>
+     * @return O tipo de atividade tratada.
+     */
+    public abstract String obtenhaTipoAtividade();
+
+    /**
+     * Método que será implementado pelas classes que herdarem de FormatadorPadrao.
+     * <p>Recupera o tipo de atividade da resolução tratada.</p>
+     * @return O tipo de atividade da resolução tratada.
+     */
+    public abstract String obtenhaTipoAtividadeResolucao();
+
 }

@@ -1,7 +1,6 @@
 package parsers;
 import helpers.RomanHelper;
 import utils.MatcherUtils;
-import utils.RegistrosUtils;
 
 import java.io.File;
 import java.util.HashMap;
@@ -34,8 +33,8 @@ public class ResolucaoParser {
         HashMap<String, Map> atividades = new HashMap<String, Map>();
 
         atividades.put("ensino", obtenhaAtividades(ATIVIDADES_DE_ENSINO));
-        atividades.put("producaointelectual", obtenhaAtividades(PRODUCAO_INTELECTUAL));
-        atividades.put("pesquisaextensao", obtenhaAtividades(ATIVIDADES_DE_PESQUISA_E_EXTENSÃO));
+        atividades.put("producaoIntelectual", obtenhaAtividades(PRODUCAO_INTELECTUAL));
+        atividades.put("pesquisaExtensao", obtenhaAtividades(ATIVIDADES_DE_PESQUISA_E_EXTENSÃO));
         atividades.put("administrativas", obtenhaAtividades(ATIVIDADES_ADMINISTRATIVAS_REPRESENTAÇÃO));
         atividades.put("outras", obtenhaAtividades(OUTRAS_ATIVIDADES));
 
