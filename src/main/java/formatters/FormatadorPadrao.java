@@ -167,13 +167,17 @@ public abstract class FormatadorPadrao {
         return codPontuacao;
     }
 
+    public ResolucaoParser getResolucaoParser() {
+        return resolucaoParser;
+    }
+
     /**
      * Calcula a pontuação do registro baseado em suas datas.
      * @param matcher O matcher para a atividade.
      * @return A pontuação.
      */
     public String obtenhaCampo(Matcher matcher, String campo) {
-        HashMap<String, Map> anexoIIResolucao = this.resolucaoParser.obtenhaAtividadesResolucao();
+        HashMap<String, Map> anexoIIResolucao = getResolucaoParser().obtenhaAtividadesResolucao();
         String key = matcher.group(2).toLowerCase().trim();
 
         String codGrupoPontuacao = "";

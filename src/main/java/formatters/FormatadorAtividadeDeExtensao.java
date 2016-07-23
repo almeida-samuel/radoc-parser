@@ -4,6 +4,7 @@ import utils.MatcherUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 public class FormatadorAtividadeDeExtensao extends FormatadorPadrao {
@@ -32,7 +33,7 @@ public class FormatadorAtividadeDeExtensao extends FormatadorPadrao {
 
             while(matcherAtividadesIndividuais.find()) {
                 Matcher matcherAtividade;
-                String regexAtividadeUnica = "Tabela:.+?CHA:.+?(\\d+).+?Data início:.+?(\\d+\\/\\d+\\/\\d+).+?Data término:.+?(\\d+\\/\\d+\\/\\d+).+?Descrição da atividade:.+?(.+).+?Descrição da clientela:.+?(.+)";
+                String regexAtividadeUnica = "Tabela:(.+)?CHA:.+?(\\d+).+?Data início:.+?(\\d+\\/\\d+\\/\\d+).+?Data término:.+?(\\d+\\/\\d+\\/\\d+).+?Descrição da atividade:.+?(.+).+?Descrição da clientela:.+";
                 matcherAtividade = MatcherUtils.obtenhaMatcher(regexAtividadeUnica, matcherAtividadesIndividuais.group());
                 while(matcherAtividade.find()) {
                     String atividadeTratada = trateAtividadeDeExtensao(matcherAtividade);
@@ -47,12 +48,30 @@ public class FormatadorAtividadeDeExtensao extends FormatadorPadrao {
         return atividadesDeOrientacao;
     }
 
+    @Override
+    public String obtenhaCampo(Matcher matcher, String campo) {
+        HashMap<String, Map> anexoIIResolucao = getResolucaoParser().obtenhaAtividadesResolucao();
+        String key = matcher.group(1).toLowerCase().trim();
+
+        String codGrupoPontuacao = "";
+        HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());
+
+        for(String k : mapaAtividade.keySet()) {
+            if(k.equals(key) || k.contains(key)) {
+                codGrupoPontuacao = String.valueOf(mapaAtividade.get(k).get(campo));
+                break;
+            }
+        }
+
+        return codGrupoPontuacao;
+    }
+
     /**
      *Trata as atividades de extensão ao padrão de grupos
      * @param matcher Matcher para a atividade.
      * @return Atividade tratada
      */
     private String trateAtividadeDeExtensao(Matcher matcher){
-        return matcher.group(4) + "\n" + matcher.group(5) + "\n" + matcher.group(1) + "\n" + matcher.group(2) + "\n" + matcher.group(3);
+        return matcher.group(1) + "\n" + matcher.group(5) + "\n" + matcher.group(2) + "\n" + matcher.group(3) + "\n" + matcher.group(4);
     }
 }

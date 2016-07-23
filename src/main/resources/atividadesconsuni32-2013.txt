@@ -101,15 +101,15 @@ III-2;4;coordenador de contratos e de convênios de cooperação institucional n
 III-2;5;participante de projeto de extensão/cultura cadastrado na proec (total máximo a ser considerado neste item são 15 pontos);3
 III-2;6;curso de extensão ministrado com 20 ou mais horas (total máximo a ser considerado neste item são 15 pontos);5
 III-2;7;curso de extensão ministrado com menos de 20 horas (total máximo a ser considerado neste item são 10 pontos);2
-III-2;8.1;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico evento internacional (total máximo a ser considerado neste item são 15 pontos);5
-III-2;8.2;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico evento nacional (total máximo a ser considerado neste item são 12 pontos);4
-III-2;8.3;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico evento regional ou local (total máximo a ser considerado neste item são 9 pontos);3
+III-2;8.1;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico - evento internacional (total máximo a ser considerado neste item são 15 pontos);5
+III-2;8.2;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico - evento nacional (total máximo a ser considerado neste item são 12 pontos);4
+III-2;8.3;palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico - evento regional ou local (total máximo a ser considerado neste item são 9 pontos);3
 III-2;9.1;promoção ou produção de eventos artísticos e científicos locais presidente;4
 III-2;9.2;promoção ou produção de eventos artísticos e científicos locais comissão organizadora;2
-III-2;10.1;promoção ou produção de eventos artísticos e científicos regionais presidente;6
-III-2;10.2;promoção ou produção de eventos artísticos e científicos regionais comissão organizadora;3
-III-2;11.1;promoção ou produção de eventos artísticos e científicos nacionais presidente;8
-III-2;11.2;promoção ou produção de eventos artísticos e científicos nacionais comissão organizadora;4
+III-2;10.1;promoção ou produção de eventos artísticos e científicos regionais - presidente;6
+III-2;10.2;promoção ou produção de eventos artísticos e científicos regionais - comissão organizadora;3
+III-2;11.1;promoção ou produção de eventos artísticos e científicos nacionais - presidente;8
+III-2;11.2;promoção ou produção de eventos artísticos e científicos nacionais - comissão organizadora;4
 III-2;12.1;promoção ou produção de eventos artísticos e científicos internacionais presidente;10
 III-2;12.2;promoção ou produção de eventos artísticos e científicos internacionais comissão organizadora;5
 ATIVIDADES ADMINISTRATIVAS E DE REPRESENTAÇÃO
