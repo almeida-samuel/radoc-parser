@@ -71,8 +71,8 @@ II-3;8;desenvolvimento e registro no inpi de marcas;5
 II-3;9;participação em comitê editorial de periódicos especializados indexados e de editoras universitárias;10
 II-3;10;parecer de consultoria ad hoc em comitês de avaliação de concursos e editais de publicação de livros de editoras com corpo editorial;3
 II-3;11;parecer de consultoria ad hoc para periódicos especializados com corpo editorial ou para instituições de fomento à pesquisa ou para livros de editoras com corpo editorial;3
-II-3;12.1;parecer com anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);10
-II-3;12.2;parecer sem anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);5
+II-3;12.1;parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - com anotação de resp. técnica (art) ou registro de resp. técnica (rrt);10
+II-3;12.2;parecer realizado em consultoria ou assessoria oficializada por convite, convênio, contrato ou designação - sem anotação de resp. técnica (art) ou registro de resp. técnica (rrt);5
 II-3;12.3;projeto ou relatório técnico com anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);20
 II-3;12.4;projeto ou relatório técnico sem anotação de responsabilidade técnica (art) ou registro de responsabilidade técnica (rrt);10
 II-3;13;anais, manuais, catálogos, boletins, com ficha bibliográfica (organizador / redator);5
