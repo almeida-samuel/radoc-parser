@@ -5,14 +5,9 @@ package helpers;
  */
 public class RomanHelper {
 
-    final static char simbolos[] = {'M','D','C','L','X','V','I'};
-    final static int   valores[] = {1000,500,100,50,10,5,1};
+    private final static char simbolos[] = {'M','D','C','L','X','V','I'};
+    private final static int   valores[] = {1000,500,100,50,10,5,1};
 
-    /**
-     * Recupera o valor inteiro de um número escrito em algarismos romanos.
-     * @param romano Número escrito em algarismos romanos.
-     * @return O valor inteiro que representa o os algarismos romanos do input.
-     */
     public static int valueOf(String romano) {
         romano = romano.toUpperCase();
         if(romano.length() == 0) return 0;

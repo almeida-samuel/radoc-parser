@@ -14,18 +14,16 @@ public abstract class FormatadorPadrao {
 
     private ResolucaoParser resolucaoParser;
 
+    public abstract String obtenhaTipoAtividadeResolucao();
+
+    public int obtenhaNumeroGrupoTabela() {
+        return 2;
+    }
+
     public FormatadorPadrao(String pathResolucao) {
         this.resolucaoParser = new ResolucaoParser(new File(pathResolucao));
     }
 
-    /**
-     *
-     * @param matcherGeral
-     * @param regexRegistrosIndividuais
-     * @param regexRegistroUnico
-     * @param substituicoes
-     * @return
-     */
     public ArrayList<String> obtenhaRegistros(Matcher matcherGeral, String regexRegistrosIndividuais, String regexRegistroUnico, HashMap substituicoes){
         ArrayList<String> registros = new ArrayList<String>();
 
@@ -51,13 +49,6 @@ public abstract class FormatadorPadrao {
         return registros;
     }
 
-    /**
-     * Substitui as ocorrências de determinada regex (key) por um dado valor (value)
-     * em um determinado conteúdo alvo.
-     * @param conteudo Conteúdo alvo no qual se deseja substituir as ocorrências.
-     * @param substituicoes Map, em que: key= regex que se deseja substituir, value= valor da substituição.
-     * @return O conteúdo alterado, já com as substituições feitas.
-     */
     public String substituiOcorrencias(String conteudo, HashMap<String, String> substituicoes) {
         for(String key : substituicoes.keySet()) {
             conteudo = conteudo.replaceAll(key, substituicoes.get(key));
@@ -65,12 +56,6 @@ public abstract class FormatadorPadrao {
         return conteudo;
     }
 
-    /**
-     * Obtém a linha padronizada de um registro.
-     * @param sequencial Número sequencial que identifica o registro na atividade de um determinado tipo.
-     * @param matcher Matcher para a atividade.
-     * @return Linha padronizada de um registro.
-     */
     public String obtenhaLinhaDeRegistroPadronizado(int sequencial, Matcher matcher) {
         String linhaDeRegistroPadrao = "";
 
@@ -84,11 +69,6 @@ public abstract class FormatadorPadrao {
         return linhaDeRegistroPadrao;
     }
 
-    /**
-     * Recebe o matcher da atividade qualquer e trata a carga horária anual.
-     * @param matcher Matcher para a atividade.
-     * @return A carga horária anual da atividade.
-     */
     private static String trataCargaHoraria(Matcher matcher) {
         if (!"".equals(matcher.group(3)) && !" ".equals(matcher.group(3))) {
             return matcher.group(3);
@@ -115,11 +95,6 @@ public abstract class FormatadorPadrao {
         return "";
     }
 
-    /**
-     * Recebe o matcher da atividade qualquer e trata suas datas de início e fim.
-     * @param matcher Matcher para a atividade.
-     * @return Concatenação das datas de início e fim.
-     */
     private static String trataDatas(Matcher matcher) {
 
         String dtInicio = matcher.group(4).replaceAll("/", "").trim();
@@ -131,11 +106,6 @@ public abstract class FormatadorPadrao {
         return (dtInicio + ", " + dtFim);
     }
 
-    /**
-     * Recupera o codGrupoPontuacao de uma dada atividade.
-     * @param matcher Matcher para a atividade.
-     * @return O codGrupoPontuacao.
-     */
     private String obtenhaCodGrupoPontuacao(Matcher matcher) {
         String codGrupoPontuacao = obtenhaCampo(matcher, "codGrupoPontuacao");
         if (codGrupoPontuacao.equals("")) {
@@ -144,18 +114,6 @@ public abstract class FormatadorPadrao {
         return codGrupoPontuacao;
     }
 
-    /**
-     * Método que será implementado pelas classes que herdarem de FormatadorPadrao.
-     * <p>Recupera o tipo de atividade da resolução tratada.</p>
-     * @return O tipo de atividade da resolução tratada.
-     */
-    public abstract String obtenhaTipoAtividadeResolucao();
-
-    /**
-     * Calcula a pontuação do registro baseado em suas datas.
-     * @param matcher O matcher para a atividade.
-     * @return A pontuação.
-     */
     public String obtenhaPontuacao(Matcher matcher) {
         String codPontuacao = obtenhaCampo(matcher, "pontuacao");
         if (codPontuacao.equals("")) {
@@ -168,14 +126,9 @@ public abstract class FormatadorPadrao {
         return resolucaoParser;
     }
 
-    /**
-     * Calcula a pontuação do registro baseado em suas datas.
-     * @param matcher O matcher para a atividade.
-     * @return A pontuação.
-     */
     public String obtenhaCampo(Matcher matcher, String campo) {
         HashMap<String, Map> anexoIIResolucao = getResolucaoParser().obtenhaAtividadesResolucao();
-        String key = matcher.group(2).toLowerCase().trim();
+        String key = matcher.group(obtenhaNumeroGrupoTabela()).toLowerCase().trim();
 
         String codGrupoPontuacao = "";
         HashMap<String, Map> mapaAtividade = (HashMap<String, Map>) anexoIIResolucao.get(obtenhaTipoAtividadeResolucao());

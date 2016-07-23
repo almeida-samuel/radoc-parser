@@ -39,6 +39,8 @@ public class PdfParserTest {
 
 		assertEquals(7, atividadesDeEnsino.size());
 		valideLinhas(atividadesDeEnsino);
+		String primeiraLinha = "000000000000, 0064, 1, DISCIPLINA UNIDADE - INSTITUTO DEINFORMATICAINTEGRAÇÃO DE APLICAÇÕES  , 64, 2015, 2015";
+		assertEquals(primeiraLinha, atividadesDeEnsino.get(0));
 	}
 
 	@Test
@@ -49,6 +51,8 @@ public class PdfParserTest {
 
 		assertEquals(3, atividadesDeOrientacao.size());
 		valideLinhas(atividadesDeOrientacao);
+		String primeiraLinha = "005001013000, 0003, 1,  IMPLANTAÇÃO DE PROCESSOS DO COBIT EM PEQUENA OU MÉDIA EMPRESA   Aluno orientado em projeto de final de curso , 1, 03082015, 31122015";
+		assertEquals(primeiraLinha, atividadesDeOrientacao.get(0) );
 	}
 
 	@Test
@@ -59,6 +63,8 @@ public class PdfParserTest {
 
 		assertEquals(3, atividadesEmProjetos.size());
 		valideLinhas(atividadesEmProjetos);
+		String primeiraLinha = "003002005000, 0003, 1, Simpósio Brasileiro de Sistemas de Informação Participante de projeto de extensão/cultura cadastrado na PROEC , 100, 30062014, 15072015";
+		assertEquals(primeiraLinha, atividadesEmProjetos.get(0));
 	}
 
 	@Test
@@ -69,6 +75,8 @@ public class PdfParserTest {
 
 		assertEquals(5, atividadesDeExtensao.size());
 		valideLinhas(atividadesDeExtensao);
+		String primeiraLinha = "003002008003, 0003, 1,  Palestrante, conferencista ou participante em mesa redonda em evento científico, cultural ou artístico - Evento regional ou local  Palestra ministrada: Uma certificação para a qualidade de produto de software brasileiro, 2, 26112015, 26112015";
+		assertEquals(primeiraLinha, atividadesDeExtensao.get(0));
 	}
 
 	@Test
@@ -79,6 +87,9 @@ public class PdfParserTest {
 
 		assertEquals(3, atividadesDeQualificacao.size());
 		valideLinhas(atividadesDeQualificacao);
+
+		String primeiraLinha = "005003006000, 0001, 1, Participação em Congressos, Seminários, Encontros, Jornadas etc.  Jornada Goiana em Engenharia de Software - Goiânia-GO , 4, 26112015, 26112015";
+		assertEquals(primeiraLinha, atividadesDeQualificacao.get(0));
 	}
 
 	@Test
@@ -89,6 +100,9 @@ public class PdfParserTest {
 
 		assertEquals(8, atividadesAcademicasEspeciais.size());
 		valideLinhas(atividadesAcademicasEspeciais);
+
+		String primeiraLinha = "005002001001, 0004, 1,  Membro de banca de concurso para docente efetivo na instituição  Presidente da Banca , 20, 01092015, 31122015";
+		assertEquals(primeiraLinha, atividadesAcademicasEspeciais.get(0));
 	}
 
 	@Test
@@ -99,6 +113,9 @@ public class PdfParserTest {
 
 		assertEquals(8, atividadesAdministrativas.size());
 		valideLinhas(atividadesAdministrativas);
+
+		String primeiraLinha = "004002005000, 0010, 1, Atividades acadêmicas e administrativas designadas por portaria do Reitor, Pró-Reitor ou Diretor de Unidade Acadêmica com carga horária >=150 horas  Membro do Núcleo Docente Estruturante (NDE) do curso de Engenharia de Software , 150, 01012015, 31122015";
+		assertEquals(primeiraLinha, atividadesAdministrativas.get(0));
 	}
 
 	@Test
