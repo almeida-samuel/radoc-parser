@@ -173,7 +173,7 @@ V-1;19;aluno de outra ife co-orientado em dissertação de mestrado defendida e 
 V-1;20;aluno de outra ife orientado em dissertação de mestrado em andamento;2
 V-1;21;aluno de outra ife co-orientado em dissertação de mestrado em andamento;1
 V-1;22;aluno orientado em programa de iniciação científica (pibic/pivic/prolicen/picme-obmep);6
-V-1;13;aluno orientado em programa de iniciação científica júnior;5
+V-1;23;aluno orientado em programa de iniciação científica(pibic/pivic/prolicen/picme-obmep);5
 V-1;24;aluno orientado em programa especial de treinamento (pet);5
 V-1;25;aluno orientado com bolsa de dti, pibit, at, jovens talentos e similares;5
 V-1;26;aluno orientado com bolsa de licenciatura (pibid e similares);5
